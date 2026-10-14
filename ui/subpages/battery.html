@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}} one">
+  {{STATUSBAR}}
+  <div class="subtop"><a href="act:backfunc" id="bk" class="bk"></a><a href="act:backfunc" class="tl">电池与充电</a></div>
+  <div class="card bhero">
+    <div class="bst"><b>{{BST1}}</b><span class="k">{{BST2}}</span></div>
+    <div class="n bbig">{{BPCT}}<span class="u">%</span></div>
+    <div class="bar"><i class="good" style="width:{{BBAR}}%"></i></div>
+    <div class="b3"><div class="kc"><span class="k">输入</span><span class="v n">{{BIN}}</span></div><div class="kc"><span class="k">温度</span><span class="v n">{{BTMP}}</span></div><div class="kc"><span class="k">健康</span><span class="v n">{{BHL}}</span></div></div>
+  </div>
+  <a href="act:dps" class="card tgw"><span class="sw {{DPSCLASS}}"><span class="kn"></span></span><span class="tl">直供电</span><span class="k">插着电时不给电池充电，直接用充电器的电</span></a>
+  <div class="card bset"><div class="blhd"><span class="k blsum">到上限自动直供，降 5% 再充</span>充电上限</div>{{CAPSEG}}</div>
+  <div class="card bset"><div class="blhd"><span class="k blsum">电流越小越凉快，充得越慢</span>充电限流</div>{{CURSEG}}</div>
+  {{TOAST}}
+  <div class="pgpad"></div>
+</body>
+</html>

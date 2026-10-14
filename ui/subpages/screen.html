@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}}">
+  {{STATUSBAR}}
+  <div class="subtop"><a href="act:backfunc" id="bk" class="bk"></a><a href="act:backfunc" class="tl">屏幕</a></div>
+  <div class="card">
+    <div class="srow"><span class="ct">屏幕亮度</span><span class="sval n bigv">{{BRIGHT}}<span class="u">%</span></span></div>
+    <a href="act:bright" id="bright-bar" class="bigbar"><span class="sfill" style="width:{{BRIGHT}}%"></span></a>
+    <div class="k bbhint">左右拖动调节，或直接点位置</div>
+  </div>
+  <div class="card">
+    <div class="ct">自动息屏</div>
+    <div class="aots">{{AUTOOFFTILES}}</div>
+  </div>
+  {{TOAST}}
+</body>
+</html>

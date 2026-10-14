@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}} one">
+  {{STATUSBAR}}
+  <div class="subtop"><a href="act:backfunc" id="bk" class="bk"></a><a href="act:backfunc" class="tl">WiFi 功率</a></div>
+  <div class="card txhero"><div class="txnow"><span class="k">实际功率</span><span class="k txv">{{TXDBM}}</span></div><div class="k">发射功率</div><div class="n bbig">{{TXPCT}}<span class="u">% · {{TXLBL}}</span></div></div>
+  {{TXOPTS}}
+  <a href="act:psm" class="card tgw"><span class="sw {{PSMCLASS}}"><span class="kn"></span></span><span class="tl">WiFi 节能</span><span class="k">设备空闲时降功耗，延迟会略高</span></a>
+  <div class="k txnote">功率越低越省电、越凉快，覆盖越小。切换马上生效，不会断网。</div>
+  {{TOAST}}
+  <div class="pgpad"></div>
+</body>
+</html>

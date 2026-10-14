@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}}">
+  {{STATUSBAR}}
+  <div class="ptitle"><b>控制中心</b></div>
+  <div class="tiles">
+    <a href="act:sub:battery.html" class="card tile"><span class="th">电池与充电</span><span class="ts">{{BATTILE}}</span></a>
+    <a href="act:sub:wifipower.html" class="card tile"><span class="th">WiFi 功率</span><span class="ts">{{TXLBL}} · {{TXDBM2}}</span></a>
+    <a href="act:stpage" class="card tile"><span class="th">测速</span><span class="ts">{{STTILE}}</span></a>
+    <a href="act:sub:sms.html" class="card tile"><span class="th">短信{{SMSBADGE}}</span><span class="ts">{{SMSLAST}}</span></a>
+    <a href="act:sub:charts.html" class="card tile"><span class="th">监控</span><span class="ts">CPU {{CPUUSAGE}}% · {{CPUTEMP}}℃</span></a>
+    {{RLTILE}}
+  </div>
+  <div class="quick">
+    <a href="act:dps" class="card qk"><span class="k">直供电</span><span class="sw {{DPSCLASS}}"><span class="kn"></span></span></a>
+    <a href="act:usbnet" class="card qk"><span class="k">USB 网络</span><span class="sw {{USBNETCLASS}}"><span class="kn"></span></span></a>
+    <a href="act:locktoggle" class="card qk"><span class="k">锁屏密码</span><span class="sw {{LOCKCLASS}}"><span class="kn"></span></span></a>
+  </div>
+  {{DEVBAR}}
+  {{TOAST}}
+  <div class="pgpad"></div>
+  {{DOTS}}
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}} one">
+  {{STATUSBAR}}
+  <div class="subtop"><a href="act:backfunc" id="bk" class="bk"></a><a href="act:backfunc" class="tl">高级设置</a></div>
+  <a href="act:sigread" class="card tgw"><span class="sw {{SIGRDCLASS}}"><span class="kn"></span></span><span class="tl">读取信令</span><span class="k">ML1 / 原始信令读取，影响 TA / Ports / Beam</span></a>
+  <a href="act:sigparse" class="card tgw"><span class="sw {{SIGPSCLASS}}"><span class="kn"></span></span><span class="tl">解析信令</span><span class="k">LTE / NR RRC / NAS 解析，信令页才有内容</span></a>
+  <div class="k txnote">开着会多占一些 CPU 和电量，不看信令时建议关闭。</div>
+  {{TOAST}}
+  <div class="pgpad"></div>
+</body>
+</html>

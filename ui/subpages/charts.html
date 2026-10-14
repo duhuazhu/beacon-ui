@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}}">
+  {{STATUSBAR}}
+  <div class="subtop"><a href="act:backfunc" id="bk" class="bk"></a><a href="act:backfunc" class="tl">监控</a></div>
+  <div class="card mon"><div class="ml"><span class="k">CPU</span><div class="mv"><span class="n">{{CPUUSAGE}}</span><span class="u">%</span></div><span class="k xs">{{CPUTEMP}}℃</span></div><div id="chart-cpu" class="mc"></div></div>
+  <div class="card mon"><div class="ml"><span class="k">内存</span><div class="mv"><span class="n">{{MEM}}</span><span class="u">%</span></div><span class="k xs">{{MEMDETAIL}}</span></div><div id="chart-mem" class="mc"></div></div>
+  <div class="card mon"><div class="ml"><span class="k">网速 ↓</span><div class="mv"><span class="n">{{RXV}}</span><span class="u">{{RXU}}</span></div><span class="k xs">↑ {{TXSPEED}}</span></div><div id="chart-net" class="mc"></div></div>
+  <div class="card mon"><div class="ml"><span class="k">电池温度</span><div class="mv"><span class="n">{{BATTEMP}}</span><span class="u">℃</span></div><span class="k xs">{{PWRLABEL}} {{BATPWR}} W</span></div><div id="chart-batt" class="mc"></div></div>
+  <div class="pgpad"></div>
+</body>
+</html>

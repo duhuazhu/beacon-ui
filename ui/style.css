@@ -1,0 +1,1461 @@
+/* Shared styles for /data/plugins/u60pro-devui/ui. 320x480, litehtml (no grid/JS/animation).
+   Theme via <body class="{{THEME}}">  (dark | light). */
+
+html, body { margin: 0; padding: 0; }
+body {
+  width: 320px; min-height: 480px; position: relative;
+  font-family: sans-serif; font-size: 13px;
+}
+body.dark  { background: #15161a; color: #e9ebee; }
+body.light { background: #eceef1; color: #1b1d22; }
+
+/* ---- status bar ---- */
+.sbar { height: 26px; line-height: 26px; padding: 0 5px 0 8px; overflow: hidden; font-size: 13px; text-align: left; }
+body.dark  .sbar { background: #1d2733; }
+body.light .sbar { background: #d8e2f0; }
+.sbar .clk { font-size: 15px; font-weight: 800; }
+.sbar .r { float: right; height: 26px; line-height: 26px; text-align: right; white-space: nowrap; }
+.sbar .r > span { vertical-align: middle; }
+.spd { display: inline-block; height: 17px; line-height: 17px; margin-right: 7px; font-size: 11px; font-weight: 700; color: #c2c8d0; vertical-align: middle; }
+body.light .spd { color: #3a4048; }
+
+/* generation label inside the signal badge */
+.gt { display: inline-block; width: 15px; height: 17px; line-height: 9px; font-size: 9px; font-weight: 800; vertical-align: top; text-align: left; }
+
+/* generation badge (unused in status bar now; kept for other pages). Backgrounds
+ * are scoped to .gen so the .gt text spans don't pick up a colored box. */
+.gen { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 6px;
+       border-radius: 5px; color: #fff; }
+.gen.g5ga { background: #c026d3; } .gen.g5p { background: #7c4def; } .gen.g5 { background: #2f6fe0; }
+.gen.g4 { background: #1f9d4d; } .gen.glte { background: #0b96b8; } .gen.g3 { background: #6b7280; }
+
+/* battery icon. battery body + terminal are wrapped in .bw so the
+ * inter-item margin applies to the wrapper, not between body and terminal. */
+.bw { display: inline-block; height: 17px; line-height: 17px; vertical-align: middle; white-space: nowrap; font-size: 0; margin-left: 7px; }
+.batt { display: inline-block; width: 40px; height: 15px; line-height: 15px; text-align: center;
+        border: 1px solid currentColor; border-radius: 3px; vertical-align: middle;
+        overflow: hidden; font-size: 9px; font-weight: 800; }
+body.dark  .batt { background: #e9ebee; color: #17202b; }
+body.light .batt { background: #1b1d22; color: #ffffff; }
+/* not charging: fill follows theme text color (白色 / 浅色模式黑色) */
+.batt.chg { background: #5ec85e; color: #0b2a12; }
+.batt.low { background: #e8533a; color: #ffffff; }
+.tip { display: inline-block; width: 2px; height: 7px; border-radius: 0 2px 2px 0;
+       background: currentColor; vertical-align: middle; }
+
+/* ---- cards ---- */
+.card { margin: 6px 8px 0; border-radius: 8px; padding: 7px 10px; overflow: hidden; }
+body.dark  .card { background: #23262c; border: 1px solid #323843; }
+body.light .card { background: #ffffff; border: 1px solid #dde1e8; }
+.card.hsrmode { border-color: rgba(167,139,250,.48); }
+body.dark .card.hsrmode {
+  background: linear-gradient(145deg, #221634, #31204d 58%, #21172f);
+  border-color: rgba(167,139,250,.48);
+  box-shadow: inset 3px 0 0 #a78bfa;
+}
+body.light .card.hsrmode {
+  background: linear-gradient(145deg, #faf5ff, #eee2ff 62%, #ffffff);
+  border-color: rgba(124,58,237,.30);
+  box-shadow: inset 3px 0 0 #8b5cf6;
+}
+.card.hsrmode .title { color: #f5f3ff; }
+body.light .card.hsrmode .title { color: #3b0764; }
+.hsrmode-note {
+  margin-top: 2px;
+  margin-bottom: 4px;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 1px;
+  color: #c4b5fd;
+}
+body.light .hsrmode-note { color: #6d28d9; }
+.title { font-size: 15px; font-weight: 700; overflow: hidden; }
+.title .sub { font-size: 12px; font-weight: 400; color: #6f7681; margin-left: 6px; }
+.ok { color: #5ec85e; }
+.r { float: right; }
+.sec { color: #8a929d; font-size: 11px; padding: 6px 0 3px; letter-spacing: 1px; }
+
+table { width: 100%; border-collapse: collapse; }
+td { padding: 2px 0; vertical-align: middle; font-size: 13px; }
+td.kv-l { width: 96px; color: #8a929d; white-space: nowrap; }
+.val { text-align: right; }
+.sigtab { table-layout: fixed; }
+.sigtab td.kv-l { width: 88px; }
+.sigtab .val { width: 178px; white-space: normal; overflow: hidden;
+               word-wrap: break-word; overflow-wrap: break-word; word-break: break-all; }
+.sigtab .val.sm { font-size: 12px; line-height: 1.25; }
+a.rev { text-decoration: none; font-size: 12px; padding: 1px 8px; border-radius: 4px; }
+body.dark  a.rev { background: #2c2f37; color: #cfd4dc; }
+body.light a.rev { background: #d3d9e2; color: #2a2f38; }
+
+/* ---- signal badge (status bar): label + curved bar rise ---- */
+.sig { display: inline-block; width: 43px; height: 17px; position: relative; vertical-align: middle; line-height: 17px; }
+.sig .gt { position: absolute; left: 0; top: 2px; width: 16px; height: 9px; line-height: 9px; }
+.sbars { display: block; position: absolute; right: 0; bottom: 0; width: 27px; height: 17px; text-align: right; }
+.sig i { display: inline-block; width: 4px; margin-left: 1px; vertical-align: bottom;
+         background: #3a4048; border-radius: 4px 4px 1px 1px; }
+body.light .sig i { background: #c4cad3; }
+.sig i.on { background: #ffffff; }
+body.light .sig i.on { background: #2a2f38; }
+
+/* qci / ambr (signal card, top-right) */
+.qa { float: right; text-align: right; font-size: 11px; line-height: 1.5; color: #9aa2ad; }
+.qa b { color: #cdd3db; font-weight: 700; }
+body.light .qa b { color: #2a2f38; }
+
+/* per-carrier card */
+.ccd { padding: 7px 2px 6px; overflow: hidden; }
+body.dark  .ccd { border-top: 1px solid #2d323b; }
+body.light .ccd { border-top: 1px solid #e6e9ef; }
+.ccd.hsrhint {
+  margin: 6px -5px 3px;
+  padding: 8px 7px 7px;
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: inset 3px 0 0 #8b5cf6;
+}
+body.dark .ccd.hsrhint {
+  background: linear-gradient(135deg, rgba(139,92,246,.22), rgba(74,35,112,.12));
+  border-top-color: rgba(167,139,250,.36);
+}
+body.light .ccd.hsrhint {
+  background: linear-gradient(135deg, rgba(139,92,246,.16), rgba(236,223,255,.72));
+  border-top-color: rgba(124,58,237,.24);
+}
+.cb { font-size: 16px; font-weight: 700; }
+.cbw { font-size: 12px; color: #8a929d; }
+.cinfo { float: right; text-align: right; }
+.carfcn { display: block; font-size: 11px; color: #8a929d; }
+.cpci { display: block; font-size: 12px; color: #8a929d; }
+.cm { margin-top: 4px; font-size: 14px; }
+.cm .ml { font-size: 11px; color: #8a929d; margin-right: 4px; }
+.cm .ml2 { margin-left: 22px; }
+.cx { margin-top: 5px; font-size: 10px; line-height: 1.65; color: #9aa2ad; }
+.cx span { display: inline-block; margin: 0 7px 2px 0; padding: 1px 5px; border-radius: 5px; }
+.cx.sigsrc { margin-top: 2px; }
+body.dark .cx span { background: #202630; color: #b9c1ce; }
+body.light .cx span { background: #edf1f6; color: #4b5563; }
+.q-good { color: #4cc56a; font-weight: 700; }
+.q-mid  { color: #e9c244; font-weight: 700; }
+.q-bad  { color: #ec5a40; font-weight: 700; }
+.q-off  { color: #6b7280; font-weight: 700; }       /* configured but not active */
+.coff, .chsr { display: inline-block; height: 16px; line-height: 12px; font-size: 10px;
+        padding: 0 6px 2px; vertical-align: middle; box-sizing: border-box;
+        position: relative; top: -1px; }
+.coff { color: #6b7280; margin-left: 12px; border: 1px solid #4a515c; border-radius: 4px; }
+.chsr { color: #f2e8ff; margin-left: 8px; border: 1px solid rgba(196,181,253,.7);
+        border-radius: 999px; background: rgba(124,58,237,.76); }
+
+.neigh-toggle { display: block; text-decoration: none; color: inherit; }
+.neigh-card { padding-bottom: 9px; }
+.nsrc { margin-left: 6px; font-size: 11px; font-weight: 600; }
+.nsec { margin-top: 8px; padding-top: 5px; font-size: 12px; font-weight: 900; color: #8a929d; }
+.nsec span { font-weight: 700; color: #6f7681; }
+.nhead, .nrow { font-size: 0; white-space: nowrap; }
+.nhead { height: 20px; line-height: 20px; margin-top: 4px; border-radius: 6px; }
+body.dark  .nhead { background: #20242b; color: #8f98a5; }
+body.light .nhead { background: #edf1f6; color: #6b7280; }
+.nhead span, .nrow span { display: inline-block; box-sizing: border-box; width: 25%; padding: 0 2px; text-align: center; overflow: hidden; font-size: 12px; }
+.nrow { height: 24px; line-height: 24px; }
+body.dark  .nrow { border-bottom: 1px solid #2d323b; }
+body.light .nrow { border-bottom: 1px solid #e6e9ef; }
+.big { font-size: 26px; font-weight: 700; }
+.muted { color: #8a929d; font-weight: 400; }
+.val.sm { font-size: 11px; }
+
+/* ---- charts page ---- */
+.ctitle { font-size: 13px; font-weight: 700; overflow: hidden; padding-bottom: 5px; }
+.ctitle .unit { font-size: 11px; font-weight: 400; color: #8a929d; }
+.ctitle .r > span { margin-left: 8px; font-size: 11px; font-weight: 700; }
+.l1d { color: #4f8bff; } .l2d { color: #ff8c42; } .l3d { color: #46c46f; }
+/* chart placeholder: litehtml lays out the empty box, the host draws the
+   polyline natively into it (see draw_charts in htmlmain.c). */
+.chart { height: 66px; border-radius: 4px; }
+.chart.sm { height: 46px; }
+body.dark  .chart { background: #1b1d22; }
+body.light .chart { background: #f1f3f6; }
+
+/* ---- two-column data grid with a continuous center divider ---- */
+.grid2 { width: 100%; border-collapse: collapse; }
+.grid2 td { width: 50%; padding: 5px 9px; font-size: 13px; vertical-align: middle; color: #9aa2ad; }
+.grid2 td b { color: #e9ebee; font-weight: 700; }
+body.light .grid2 td b { color: #1b1d22; }
+body.dark  .grid2 td.gl { border-right: 1px solid #2d323b; }
+body.light .grid2 td.gl { border-right: 1px solid #e6e9ef; }
+
+.memrow { font-size: 13px; padding: 7px 0 4px; margin-top: 2px; color: #9aa2ad; overflow: hidden; }
+.memrow .mv { float: right; }
+.memrow b { color: #e9ebee; font-weight: 700; }
+body.light .memrow b { color: #1b1d22; }
+body.dark  .memrow { border-top: 1px solid #2d323b; }
+body.light .memrow { border-top: 1px solid #e6e9ef; }
+.membar { height: 6px; border-radius: 3px; overflow: hidden; margin-bottom: 4px; }
+body.dark  .membar { background: #353a44; }
+body.light .membar { background: #dde1e8; }
+.membar .memfill { display: block; height: 100%; border-radius: 3px; background: #46c46f; }
+
+/* ---- auto-off preset buttons (selected = .aoff-on) ---- */
+.aoffs { overflow: hidden; padding-top: 3px; }
+.aoff, .aoff-on { display: inline-block; font-size: 12px; padding: 4px 9px; margin: 3px 6px 0 0;
+        border-radius: 5px; text-decoration: none; }
+body.dark  .aoff { background: #2c2f37; color: #cfd4dc; }
+body.light .aoff { background: #d3d9e2; color: #2a2f38; }
+.aoff-on { background: #2f6fe0; color: #fff; font-weight: 700; }
+
+.resetbtn { display: block; text-align: center; }
+
+/* ---- lock page: segmented control ---- */
+.seg { display: table; table-layout: fixed; width: 100%; margin-top: 5px;
+       border-radius: 8px; overflow: hidden; }
+body.dark  .seg { background: #2c2f37; }
+body.light .seg { background: #d3d9e2; }
+.segc { display: table-cell; text-align: center; font-size: 15px; padding: 12px 0;
+        text-decoration: none; white-space: nowrap; }
+.seg4 .segc { width: 25%; }            /* explicit widths = equal cells */
+.seg5 .segc { width: 20%; font-size: 13px; padding: 11px 0; }
+.seg6 { margin-top: 5px; }
+.seg6 .segc { width: 16.66%; font-size: 13px; padding: 11px 0; }
+body.dark  .segc { color: #cfd4dc; }
+body.light .segc { color: #2a2f38; }
+.segc.seg-on { background: #2f6fe0; color: #fff; font-weight: 700; }
+
+/* lock summary cards (whole card tappable) */
+.card.lockcard { display: block; text-decoration: none; }
+body.dark  .lockcard { color: #e9ebee; }
+body.light .lockcard { color: #1b1d22; }
+.lc-t { font-size: 15px; font-weight: 700; }
+.lc-b { font-size: 12px; color: #8a929d; margin-top: 4px; }
+.card.resetbtn2 { display: block; text-align: center; text-decoration: none; font-size: 14px; }
+body.dark  .resetbtn2 { color: #ec5a40; }
+body.light .resetbtn2 { color: #d2483c; }
+
+/* ---- second-level band-lock dialog ---- */
+body.mo { background: transparent; }
+.modal { position: absolute; left: 14px; right: 14px; top: 36px; bottom: 16px;
+         border-radius: 14px; padding: 14px; overflow: hidden; }
+.modal.dark  { background: #23262c; border: 1px solid #3a4150; color: #e9ebee; }
+.modal.light { background: #ffffff; border: 1px solid #dde1e8; color: #1b1d22; }
+.mtitle { font-size: 17px; font-weight: 700; text-align: center; padding-bottom: 10px; }
+.mbands { text-align: center; }
+/* 4-per-row aligned grid of band chips (fixed width + symmetric margin = centered) */
+/* (scoped to .modal — the dialog body is class "mo", not "dark/light") */
+.bchip, .bchip-on { display: inline-block; width: 52px; vertical-align: top; text-align: center;
+        font-size: 14px; padding: 9px 0; margin: 5px 3px 0; border-radius: 8px; text-decoration: none;
+        border: 1px solid transparent; }
+/* unselected: outline only, text stays theme color (black/white) so it's legible */
+.modal.dark  .bchip { background: transparent; border-color: #3a4150; color: #e9ebee; }
+.modal.light .bchip { background: transparent; border-color: #c4cad3; color: #1b1d22; }
+/* selected: filled blue */
+.bchip-on { background: #2f6fe0; border-color: #2f6fe0; color: #fff; font-weight: 700; }
+.mbtns { position: absolute; left: 14px; right: 14px; bottom: 14px; overflow: hidden; }
+.mbtn2 { display: inline-block; width: 31%; text-align: center; font-size: 14px; padding: 11px 0;
+         border-radius: 8px; text-decoration: none; margin-right: 2%;
+         background: #2f6fe0; color: #fff; font-weight: 700; }
+.mbtn2.prim { background: #1f5fd0; }   /* 应用 = deeper blue */
+
+/* ---- toast (centered on screen) ---- */
+.toast { position: absolute; left: 36px; right: 36px; top: 210px; text-align: center;
+         font-size: 15px; padding: 14px; border-radius: 12px; background: #2f6fe0; color: #fff; }
+
+/* ---- brightness slider ---- */
+.srow { overflow: hidden; font-size: 13px; padding-bottom: 2px; }
+.srow .sval { float: right; color: #8a929d; }
+.slider { display: block; height: 16px; border-radius: 8px; margin: 2px 0 4px;
+          position: relative; text-decoration: none; overflow: hidden; }
+body.dark  .slider { background: #353a44; }
+body.light .slider { background: #dde1e8; }
+.slider .sfill { display: block; height: 100%; border-radius: 8px; background: #4f8bff; }
+a.rev.r { float: right; }
+
+/* ---- connected device list ---- */
+.cli { overflow: hidden; padding: 4px 0; font-size: 13px; }
+body.dark  .cli + .cli { border-top: 1px solid #2d323b; }
+body.light .cli + .cli { border-top: 1px solid #e6e9ef; }
+.cli .cn { font-weight: 700; }
+.cli .cip { float: right; color: #8a929d; font-size: 12px; }
+
+/* sms list (read-only page): collapsed tap-to-open cards, one preview line */
+.sms { display: block; padding: 9px 0; text-decoration: none; color: inherit; }
+body.dark  .sms + .sms { border-top: 1px solid #2d323b; }
+body.light .sms + .sms { border-top: 1px solid #e6e9ef; }
+.smsh { overflow: hidden; font-size: 12px; }
+.smsn { font-weight: 700; font-size: 14px; }
+.sms.un .smsn { color: #2f6fe0; }
+.sms.un .smsn:before { content: "● "; color: #e0483d; font-size: 10px; }
+.smsd { float: right; color: #8a929d; }
+.smsp { margin-top: 3px; font-size: 13px; color: #8a929d; overflow: hidden; white-space: nowrap; }
+
+/* sms detail dialog (second level) */
+.smsmdate { color: #8a929d; font-size: 12px; text-align: center; padding-bottom: 10px; }
+.smsmview { position: absolute; left: 14px; right: 14px; top: 72px; bottom: 67px; overflow: hidden; }
+.smsmbody { position: relative; margin-right: 4px; font-size: 15px; line-height: 1.5;
+            overflow-wrap: break-word; word-wrap: break-word; }
+.mfull { width: 100%; margin-right: 0; }
+
+/* ---- toggle switch (settings) ---- */
+/* table row so the switch vertical-centers against the (two-line) label */
+.row { display: table; width: 100%; padding: 7px 0; text-decoration: none; color: inherit; }
+body.dark  .row + .row { border-top: 1px solid #2d323b; }
+body.light .row + .row { border-top: 1px solid #e6e9ef; }
+.row .lab { display: table-cell; vertical-align: middle; font-size: 14px; }
+.row .lab .st { display: block; font-size: 11px; color: #8a929d; margin-top: 1px; }
+.row .ctrl { display: table-cell; vertical-align: middle; text-align: right; width: 58px; }
+.sw { display: inline-block; width: 54px; height: 30px; border-radius: 15px;
+      position: relative; text-decoration: none; vertical-align: middle; }
+.sw.off { background: #4a515c; } .sw.on { background: #34b863; }
+.sw .kn { position: absolute; top: 3px; width: 24px; height: 24px; border-radius: 12px; background: #fff; }
+.sw.off .kn { left: 3px; } .sw.on .kn { left: 27px; }
+
+/* bottom spacer on long pages so the absolute dots don't cover the last card */
+.pgpad { height: 40px; }
+
+/* optional speedtest entry on the first page */
+.speed-home { display: block; margin: 8px 8px 0; padding: 13px 10px; border-radius: 10px; text-align: center; text-decoration: none; font-size: 17px; font-weight: 800; }
+body.dark  .speed-home { background: #153846; color: #dff7fb; border: 1px solid #24576a; }
+body.light .speed-home { background: #dff8fb; color: #12313d; border: 1px solid #abdce6; }
+body.dark  .speed-home.on { background: #2b3844; border-color: #43586b; color: #eef8fb; }
+body.light .speed-home.on { background: #e6edf3; border-color: #c2cbd6; color: #1d2d38; }
+
+/* ---- function hub + second-level pages ---- */
+.func-hero { height: 40px; line-height: 40px; padding: 0 10px; }
+.func-title { margin-top: 0; font-size: 20px; line-height: 40px; font-weight: 900; }
+.func-grid { font-size: 0; padding: 0 4px 0; }
+.func-tile { display: inline-block; box-sizing: border-box; width: 148px; min-height: 88px;
+             margin: 6px 4px 0; padding: 15px 10px 12px; border-radius: 16px;
+             vertical-align: top; text-decoration: none; overflow: hidden; }
+.func-name { display: block; font-size: 17px; line-height: 1.1; font-weight: 900; }
+.func-desc { display: block; margin-top: 6px; font-size: 11px; line-height: 1.25; color: #8a929d; }
+body.dark  .func-tile { background: #23262c; border: 1px solid #323843; color: #eef3f8; }
+body.light .func-tile { background: #ffffff; border: 1px solid #dde1e8; color: #1b1d22; }
+.subtop { display: block; height: 42px; line-height: 42px; margin: 3px 8px 0;
+          position: relative; overflow: hidden; }
+.subback { display: inline-block; box-sizing: border-box; min-width: 62px; height: 34px;
+           line-height: 32px; margin-top: 4px; padding: 0 10px; border-radius: 12px;
+           text-align: center; text-decoration: none; font-size: 14px; font-weight: 800;
+           vertical-align: top; }
+.subname { position: absolute; left: 78px; right: 78px; top: 0; text-align: center;
+           font-size: 16px; font-weight: 900; overflow: hidden; white-space: nowrap; }
+body.dark  .subback { background: #252b34; color: #e9eef5; border: 1px solid #343d49; }
+body.light .subback { background: #ffffff; color: #1b1d22; border: 1px solid #d6dce5; }
+.custom-page { margin: 0; padding: 0; }
+.custom-page > p { margin: 8px; font-size: 14px; line-height: 1.35; color: #8a929d; }
+.func-note { margin: 6px 0 0; font-size: 13px; line-height: 1.35; color: #8a929d; }
+
+/* ---- bottom page dots (centered, no box) ---- */
+.dots { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; }
+.dots .dot { display: inline-block; width: 6px; height: 6px; margin: 0 4px; border-radius: 3px;
+             background: #4a515c; }
+body.light .dots .dot { background: #b7bec9; }
+.dots .dot.on { background: #d0d6de; width: 16px; }
+body.light .dots .dot.on { background: #4a515c; }
+
+/* ---- lock screen (PIN pad) ---- */
+.lockwrap { padding-top: 8px; }
+.lock-title { text-align: center; font-size: 18px; font-weight: 700; padding: 20px 0 16px; }
+/* PIN box: 4 circle slots + 删除, centered together on one line */
+.pinbox { text-align: center; padding: 6px 0 8px; font-size: 0; }
+.pin-slots { display: inline-block; vertical-align: middle; }
+.pin-slots .ps { display: inline-block; width: 16px; height: 30px; margin: 0 9px;
+                 line-height: 30px; text-align: center; vertical-align: middle; }
+/* empty slot: hollow ring (outer circle + page-colored inner hole) */
+.ring { display: inline-block; width: 16px; height: 16px; border-radius: 50%;
+        background: #8a929d; position: relative; vertical-align: middle; }
+.ring .ri { position: absolute; top: 3px; left: 3px; width: 10px; height: 10px; border-radius: 50%; }
+body.dark  .ring .ri { background: #15161a; }
+body.light .ring .ri { background: #eceef1; }
+/* typed slot: solid filled circle */
+.pin-slots .dot { display: inline-block; width: 16px; height: 16px; border-radius: 50%;
+                  background: #2f6fe0; vertical-align: middle; }
+.pin-del { display: inline-block; vertical-align: middle; margin-left: 16px; font-size: 14px;
+           text-decoration: none; padding: 7px 13px; border-radius: 9px; }
+body.dark  .pin-del { background: #2c2f37; color: #cfd4dc; }
+body.light .pin-del { background: #e2e6ec; color: #2a2f38; }
+/* keypad: rounded-rectangle keys, even gaps, filling the lower two-thirds.
+   inline-block cells (not a table) so litehtml clips the rounded background. */
+.keypad { width: 300px; margin: 18px auto 0; }
+.kprow { text-align: center; font-size: 0; margin-bottom: 12px; }
+.kpcell { display: inline-block; width: 98px; vertical-align: middle; }
+a.kp { display: inline-block; width: 84px; height: 60px; line-height: 60px; border-radius: 16px;
+       font-size: 26px; font-weight: 700; text-decoration: none; vertical-align: middle; }
+body.dark  a.kp { background: #2c2f37; color: #e9ebee; }
+body.light a.kp { background: #e2e6ec; color: #1b1d22; }
+a.kp.kpx { font-size: 16px; font-weight: 400; }   /* 取消 key */
+/* wrong-PIN popup, centered on screen */
+.lock-err { position: absolute; left: 48px; right: 48px; top: 210px; text-align: center;
+            font-size: 16px; font-weight: 700; padding: 13px; border-radius: 12px;
+            background: #d2483c; color: #fff; }
+
+/* ---- power menu: three big round buttons stacked vertically
+ * (disc + glyph drawn natively) ---- */
+.pm-title { text-align: center; font-size: 23px; color: #9aa2ad; padding: 26px 0 0; }
+.pm-row { text-align: center; margin-top: 14px; }
+.pmbtn { display: block; width: 100%; margin-bottom: 16px; text-decoration: none; color: inherit; }
+/* circle placeholder: the colored disc + icon are painted natively over this box */
+.pmc { display: block; width: 84px; height: 84px; margin: 0 auto; }
+.pmlab { display: block; text-align: center; font-size: 15px; margin-top: 8px; }
+.pmbtn.armed .pmlab { font-weight: 700; }
+
+.st-home-panel { margin: 0; padding: 0 0 10px; }
+.st-card { margin: 8px 8px 0; padding: 10px; border-radius: 10px; overflow: hidden; }
+body.dark  .st-card { background: #101922; border: 1px solid #1d3b4a; }
+body.light .st-card { background: #ffffff; border: 1px solid #c8d9e0; }
+.st-gauge { text-align: center; padding-top: 12px; }
+.st-gauge-dial { border-radius: 92px; overflow: hidden; }
+body.dark  .st-gauge-dial { background: #0b1720; }
+body.light .st-gauge-dial { background: #edf8fb; }
+.st-gauge-sub { margin-top: 8px; font-size: 14px; color: #93a9b5; }
+.st-lines { padding: 9px 10px 10px; }
+.st-line-head { height: 23px; line-height: 23px; font-size: 14px; color: #93a9b5; overflow: hidden; }
+.st-line-head b { float: right; font-size: 14px; color: #e8f7fb; }
+body.light .st-line-head b { color: #183342; }
+.st-line-chart { height: 44px; margin: 0 0 8px; border-radius: 8px; overflow: hidden; }
+body.dark  .st-line-chart { background: #172431; border: 1px solid #1f3948; }
+body.light .st-line-chart { background: #eef7fa; border: 1px solid #cbdfe6; }
+.st-caption { margin: 8px 0 2px; font-size: 14px; font-weight: 700; color: #93a9b5; }
+.stseg { text-align: center; }
+.stsegc { display: inline-block; box-sizing: border-box; width: 68px; margin: 5px 2px 0; padding: 8px 0; border-radius: 10px; text-align: center; text-decoration: none; font-size: 13px; font-weight: 700; }
+body.dark  .stsegc { background: #213241; color: #d5edf4; border: 1px solid #31495a; }
+body.light .stsegc { background: #edf5f8; color: #183342; border: 1px solid #cadde4; }
+body.dark  .stsegc.on { background: #2bb8c8; color: #05151a; border-color: #4dddeb; }
+body.light .stsegc.on { background: #22a8bc; color: #ffffff; border-color: #178ca0; }
+body.dark  .stsegc.loop.on { background: #e7a33b; color: #160c02; border-color: #ffc766; }
+body.light .stsegc.loop.on { background: #d88418; color: #ffffff; border-color: #bd6f0f; }
+.stloop-warn { margin: 8px 2px 0; padding: 8px 9px; border-radius: 8px; font-size: 12px; line-height: 1.35; text-align: center; }
+body.dark  .stloop-warn { background: #332414; color: #ffd8a3; border: 1px solid #704915; }
+body.light .stloop-warn { background: #fff4e4; color: #9a4d00; border: 1px solid #edc27f; }
+.st-actionbar { margin: 10px 8px 0; }
+.stbtn { display: block; padding: 14px 0; border-radius: 12px; text-align: center; text-decoration: none; font-size: 20px; font-weight: 900; }
+body.dark  .stbtn { background: #2bb8c8; color: #041419; border: 1px solid #4dddeb; }
+body.light .stbtn { background: #16a2b7; color: #ffffff; border: 1px solid #0e8698; }
+body.dark  .stbtn.loop { background: #e7a33b; color: #160c02; border-color: #ffc766; }
+body.light .stbtn.loop { background: #d88418; color: #ffffff; border-color: #bd6f0f; }
+body.dark  .stbtn.stop { background: #e7a33b; color: #160c02; border-color: #ffc766; }
+body.light .stbtn.stop { background: #d88418; color: #ffffff; border-color: #bd6f0f; }
+.stbtn.dis { background: #36414a; color: #8d9ca6; border-color: #48545d; }
+.st-log { padding: 10px 11px 11px; }
+.st-log .st-caption { margin-top: 0; margin-bottom: 7px; }
+.ststat { padding: 8px 10px; border-radius: 8px; text-align: center; font-size: 14px; font-weight: 800; }
+body.dark  .ststat { background: #172431; color: #d8eff5; border: 1px solid #1f3948; }
+body.light .ststat { background: #edf7fa; color: #183342; border: 1px solid #cbdfe6; }
+body.dark  .ststat.run { color: #71e4f0; }
+body.light .ststat.run { color: #0d8ea1; }
+body.dark  .ststat.done { color: #8ee8a9; }
+body.light .ststat.done { color: #208b43; }
+body.dark  .ststat.fail { color: #ffb6ae; }
+body.light .ststat.fail { color: #b6362d; }
+.stres { margin-top: 8px; border-radius: 8px; overflow: hidden; }
+.strow { height: 24px; line-height: 24px; font-size: 13px; overflow: hidden; }
+body.dark  .strow { border-bottom: 1px solid #1f3948; }
+body.light .strow { border-bottom: 1px solid #d6e4e9; }
+.strow span { color: #93a9b5; }
+body.light .strow span { color: #637783; }
+.strow b { float: right; font-size: 13px; font-weight: 800; color: #e8f7fb; }
+body.light .strow b { color: #183342; }
+.stempty { margin-top: 8px; padding: 10px; border-radius: 8px; text-align: center; font-size: 13px; color: #93a9b5; }
+body.dark  .stempty { background: #172431; border: 1px solid #1f3948; }
+body.light .stempty { background: #edf7fa; border: 1px solid #cbdfe6; color: #637783; }
+.stempty.bad { color: #ffb6ae; }
+body.light .stempty.bad { color: #b6362d; }
+.sthint { margin: 8px 8px 0; padding: 9px 10px; border-radius: 10px; font-size: 12px; overflow: hidden; }
+body.dark  .sthint.bad { background: #2a1818; color: #ffb6ae; border: 1px solid #5c2925; }
+body.light .sthint.bad { background: #fff0ee; color: #b6362d; border: 1px solid #f0c0ba; }
+.mono { font-family: monospace; font-size: 11px; }
+
+/* =====================================================================
+ * v2 「分层卡片」: wallpaper + translucent cards. Overrides the rules above.
+ * Numerals use the Oswald face via font-family "num" (renderer picks it up).
+ * dark: fg #f1f3f6 mu #9aa3b0 card rgba(12,14,19,.58) ac #5b97ff
+ * light: fg #141820 mu #5d6673 card rgba(255,255,255,.72) ac #2f6fe0
+ * ===================================================================== */
+a { text-decoration: none; color: inherit; }
+body.dark, body.light { background: transparent; }
+body.dark  { color: #f1f3f6; }
+body.light { color: #141820; }
+body.dark.nowp  { background: #0c0e12; }
+body.light.nowp { background: #e9edf2; }
+body.dark .sbar, body.light .sbar { background: transparent; }
+.n { font-family: num; font-weight: 400; }
+.k, .muted, .sec, .func-note, .st, .lc-b, .cbw, .carfcn, .cpci, .smsd, .smsp, td.kv-l { color: #9aa3b0; }
+body.light .k, body.light .muted, body.light .sec, body.light .func-note, body.light .st,
+body.light .lc-b, body.light .cbw, body.light .carfcn, body.light .cpci, body.light .smsd,
+body.light .smsp, body.light td.kv-l { color: #5d6673; }
+.k { font-size: 12px; }
+.good { color: #4fd07a; } .mid { color: #f0c250; } .bad { color: #ff6a52; } .mu { color: #9aa3b0; } .ac { color: #5b97ff; }
+body.light .good { color: #189a48; } body.light .mid { color: #b08300; } body.light .bad { color: #d63b23; }
+body.light .mu { color: #5d6673; } body.light .ac { color: #2f6fe0; }
+.q-good { color: #4fd07a; font-weight: 400; } .q-mid { color: #f0c250; font-weight: 400; } .q-bad { color: #ff6a52; font-weight: 400; }
+body.light .q-good { color: #189a48; } body.light .q-mid { color: #b08300; } body.light .q-bad { color: #d63b23; }
+
+/* cards */
+.card { margin: 8px 10px 0; border-radius: 16px; padding: 12px 14px; }
+body.dark  .card { background: rgba(12,14,19,.58); border: 1px solid rgba(255,255,255,.08); }
+body.light .card { background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.6); }
+.title, .ct { font-size: 15px; font-weight: 400; }
+.ct { margin-bottom: 2px; }
+.card.warn { padding: 10px 14px; }
+body.dark  .card.warn { background: rgba(160,40,24,.55); border-color: rgba(255,106,82,.35); }
+body.light .card.warn { background: rgba(255,226,220,.85); border-color: rgba(214,59,35,.25); }
+.card.warn b { font-size: 15px; font-weight: 400; display: block; }
+.card.info { padding: 10px 14px; }
+body.dark  .card.info { background: rgba(28,86,150,.55); border-color: rgba(110,170,255,.35); }
+body.light .card.info { background: rgba(222,236,255,.88); border-color: rgba(40,110,200,.25); }
+.card.info b { font-size: 15px; font-weight: 400; display: block; }
+
+/* page title */
+.ptitle { margin: 8px 14px 0; height: 28px; line-height: 28px; overflow: hidden; }
+.ptitle b { float: left; font-size: 19px; font-weight: 400; }
+.ptitle > span { float: right; font-size: 12px; color: #9aa3b0; }
+body.light .ptitle > span { color: #5d6673; }
+.pill { display: inline-block; height: 20px; line-height: 20px; margin-top: 4px; padding: 0 9px 0 8px; border-radius: 10px; font-size: 11px; }
+body.dark  .ptitle > .pill { background: rgba(255,255,255,.1); color: #f1f3f6; }
+body.light .ptitle > .pill { background: rgba(255,255,255,.7); color: #141820; }
+.pill i { display: inline-block; width: 6px; height: 6px; border-radius: 3px; margin-right: 5px; vertical-align: middle; background: #7d8591; }
+.pill.on i, .pill.good i { background: #4fd07a; }
+.pill.mid i { background: #f0c250; }
+.pill.bad i { background: #ff6a52; }
+
+/* hero (cover + home) */
+.hero { overflow: hidden; }
+.hero .hl { float: left; }
+.hero .hr { float: right; text-align: right; }
+.gen { font-size: 46px; line-height: 46px; }
+.gsub { font-family: num; font-size: 18px; margin-left: 4px; color: #9aa3b0; }
+body.light .gsub { color: #5d6673; }
+.hero .k { margin-top: 6px; }
+.hero .k.xs { font-size: 11px; margin-top: 5px; }
+.sq { font-size: 15px; margin-bottom: 5px; }
+.qbars { display: inline-block; height: 22px; font-size: 0; }
+.qbars i { display: inline-block; width: 6px; margin-left: 3px; border-radius: 2px; vertical-align: bottom; }
+.qbars i.q0 { height: 6px; } .qbars i.q1 { height: 10px; } .qbars i.q2 { height: 14px; } .qbars i.q3 { height: 18px; } .qbars i.q4 { height: 22px; }
+.qbars.good i { background: #4fd07a; } .qbars.mid i { background: #f0c250; } .qbars.bad i { background: #ff6a52; }
+body.light .qbars.good i { background: #189a48; } body.light .qbars.mid i { background: #b08300; } body.light .qbars.bad i { background: #d63b23; }
+body.dark  .qbars i.off { background: rgba(255,255,255,.16); }
+body.light .qbars i.off { background: rgba(20,30,50,.12); }
+
+/* two-up cards */
+.duo { font-size: 0; padding-left: 10px; margin-top: 8px; }
+.card.half { display: inline-block; box-sizing: border-box; width: 146px; margin: 0; vertical-align: top; font-size: 13px; }
+.card.half + .card.half { margin-left: 8px; }
+.v .u { font-size: 12px; margin-left: 3px; color: #9aa3b0; }
+body.light .v .u { color: #5d6673; }
+.spdc .v { font-size: 32px; line-height: 36px; margin-top: 2px; }
+.mini .v { font-size: 22px; line-height: 26px; margin-top: 2px; }
+.sigc .v { font-size: 30px; line-height: 34px; margin-top: 2px; }
+.bar { height: 8px; border-radius: 4px; overflow: hidden; margin-top: 8px; }
+body.dark  .bar { background: rgba(255,255,255,.14); }
+body.light .bar { background: rgba(20,30,50,.1); }
+.bar i { display: block; height: 8px; border-radius: 4px; background: #5b97ff; }
+.bar i.good { background: #4fd07a; } .bar i.mid { background: #f0c250; } .bar i.bad { background: #ff6a52; }
+
+/* WiFi page */
+.qrcard { overflow: hidden; }
+.qr { float: left; width: 118px; height: 118px; margin-right: 12px; }
+.cred { overflow: hidden; }
+.cred .v { font-size: 15px; margin-bottom: 6px; word-break: break-all; overflow-wrap: break-word; }
+.chip { display: inline-block; font-size: 11px; line-height: 20px; padding: 0 9px; border-radius: 10px; }
+body.dark  .chip { background: rgba(255,255,255,.1); color: #f1f3f6; }
+body.light .chip { background: rgba(20,30,50,.08); color: #141820; }
+.band { margin: 8px 10px 0; padding: 2px; border-radius: 12px; font-size: 0; }
+body.dark  .band { background: rgba(12,14,19,.58); border: 1px solid rgba(255,255,255,.08); }
+body.light .band { background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.6); }
+.bd { display: inline-block; width: 98px; text-align: center; font-size: 13px; line-height: 30px; border-radius: 10px; }
+.bd.off { color: #9aa3b0; }
+body.light .bd.off { color: #5d6673; }
+.bd.on { background: #2f6fe0; color: #fff; }
+.cap { margin-bottom: 2px; }
+.cli { padding: 8px 0; font-size: 14px; }
+.cli .cn { font-weight: 400; }
+.cli .cip { font-family: num; font-size: 14px; }
+body.dark  .cli + .cli, body.dark .row + .row, body.dark .kv + .kv, body.dark .row + .kv,
+body.dark  .sms + .sms, body.dark .ccd, body.dark .memrow { border-top: 1px solid rgba(255,255,255,.09); }
+body.light .cli + .cli, body.light .row + .row, body.light .kv + .kv, body.light .row + .kv,
+body.light .sms + .sms, body.light .ccd, body.light .memrow { border-top: 1px solid rgba(20,30,50,.08); }
+.kv { overflow: hidden; padding: 7px 0; }
+.kv .k { float: left; font-size: 13px; }
+.kv .v { float: right; font-size: 13px; }
+.kv .v.n { font-size: 15px; }
+
+/* buttons */
+.btns { margin: 8px 10px 0; font-size: 0; }
+.btn { display: inline-block; box-sizing: border-box; width: 94px; height: 36px; line-height: 34px; text-align: center; font-size: 14px; border-radius: 12px; }
+.btn + .btn { margin-left: 8px; }
+.btns.two .btn { width: 146px; }
+body.dark  .btn { background: rgba(12,14,19,.58); border: 1px solid rgba(255,255,255,.08); color: #f1f3f6; }
+body.light .btn { background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.6); color: #141820; }
+body.dark .btn.pri, body.light .btn.pri { background: #2f6fe0; border-color: #2f6fe0; color: #fff; }
+
+/* control center */
+.tiles { padding-left: 10px; font-size: 0; }
+.card.tile { display: inline-block; box-sizing: border-box; width: 146px; height: 78px; margin: 8px 8px 0 0; vertical-align: top; font-size: 13px; padding: 12px 14px; }
+.th { display: block; font-size: 15px; height: 20px; line-height: 20px; }
+.ts { display: block; margin-top: 20px; font-size: 12px; white-space: nowrap; overflow: hidden; color: #9aa3b0; }
+body.light .ts { color: #5d6673; }
+body.dark  .card.tile.on { background: rgba(47,111,224,.38); }
+body.light .card.tile.on { background: rgba(214,228,255,.8); }
+.badge { display: inline-block; margin-left: 6px; padding: 0 6px; height: 17px; line-height: 17px; border-radius: 9px; font-size: 12px; background: #ff6a52; color: #fff; vertical-align: middle; }
+.quick { padding-left: 10px; font-size: 0; margin-top: 8px; }
+.card.qk { display: inline-block; box-sizing: border-box; width: 94px; margin: 0 8px 0 0; padding: 9px 10px; vertical-align: top; font-size: 13px; }
+.qk .k { display: block; margin-bottom: 7px; }
+
+/* switches */
+.sw { width: 44px; height: 26px; border-radius: 13px; }
+.sw .kn { top: 3px; width: 20px; height: 20px; border-radius: 10px; }
+.sw.off .kn { left: 3px; } .sw.on .kn { left: 21px; }
+.sw.on { background: #2f6fe0; }
+body.dark  .sw.off { background: rgba(255,255,255,.2); }
+body.light .sw.off { background: rgba(20,30,50,.16); }
+.qk .sw { width: 38px; height: 22px; border-radius: 11px; }
+.qk .sw .kn { width: 16px; height: 16px; border-radius: 8px; }
+.qk .sw.on .kn { left: 19px; }
+.row { padding: 8px 0; }
+.row .lab { font-size: 14px; }
+.row .ctrl { width: 50px; }
+
+/* settings */
+.wps { font-size: 0; margin-top: 8px; }
+.wpo { display: inline-block; box-sizing: border-box; position: relative; width: 49px; height: 58px; border-radius: 10px; border: 2px solid transparent; vertical-align: top; }
+.wpo + .wpo { margin-left: 5px; }
+.wpo.on { border-color: #5b97ff; }
+body.light .wpo.on { border-color: #2f6fe0; }
+.wp-deepsea { background: #173a5f; } .wp-dusk { background: #4d2636; } .wp-forest { background: #163f33; } .wp-mist { background: #cfdcee; }
+body.dark  .wp-none { background: #0c0e12; }
+body.light .wp-none { background: #e9edf2; }
+.wpl { position: absolute; left: 0; right: 0; bottom: 5px; text-align: center; font-size: 11px; color: #f1f3f6; }
+.wp-mist .wpl { color: #1e2a3a; }
+body.light .wp-none .wpl { color: #141820; }
+.srow { overflow: hidden; padding: 0; }
+.srow.gap { margin-top: 12px; }
+.srow .sval { color: inherit; font-size: 15px; }
+.slider { height: 26px; border-radius: 13px; margin: 8px 0 2px; }
+body.dark  .slider { background: rgba(255,255,255,.14); }
+body.light .slider { background: rgba(20,30,50,.1); }
+.slider .sfill { border-radius: 13px; background: #2f6fe0; }
+.seg { margin-top: 8px; border-radius: 10px; }
+body.dark  .seg { background: rgba(255,255,255,.08); }
+body.light .seg { background: rgba(20,30,50,.06); }
+.segc, .seg5 .segc, .seg6 .segc { font-size: 13px; padding: 8px 0; }
+body.dark .segc { color: #c8ced7; } body.light .segc { color: #3a4350; }
+.segc.seg-on { background: #2f6fe0; color: #fff; font-weight: 400; border-radius: 8px; }
+.card.lockcard .ct { margin-bottom: 2px; }
+.card.resetbtn2 { padding: 11px 14px; }
+body.dark .resetbtn2 { color: #ff6a52; } body.light .resetbtn2 { color: #d63b23; }
+
+/* dots */
+.dots { bottom: 9px; }
+.dots .dot { width: 5px; height: 5px; margin: 0 3px; border-radius: 3px; }
+body.dark  .dots .dot { background: rgba(255,255,255,.28); }
+body.light .dots .dot { background: rgba(20,30,50,.2); }
+body.dark  .dots .dot.on { background: #f1f3f6; width: 14px; }
+body.light .dots .dot.on { background: #141820; width: 14px; }
+.pgpad { height: 36px; }
+
+/* cover */
+.cover .clock { text-align: center; margin-top: 44px; font-size: 96px; line-height: 96px; }
+.cover .date { text-align: center; font-size: 15px; margin-top: 6px; color: #c8ced7; }
+body.light.cover .date { color: #3a4350; }
+.card.cvcard { position: absolute; left: 10px; right: 10px; bottom: 58px; margin: 0; }
+.cvfoot { overflow: hidden; margin-top: 10px; font-size: 12px; color: #9aa3b0; }
+body.light .cvfoot { color: #5d6673; }
+.cvfoot .r { float: right; }
+.cover .hint { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; font-size: 12px; color: #c8ced7; }
+body.light.cover .hint { color: #3a4350; }
+.cover .hint i { display: block; width: 36px; height: 4px; border-radius: 2px; margin: 0 auto 7px; background: #c8ced7; }
+body.light.cover .hint i { background: #3a4350; }
+
+/* sub-pages */
+.subtop { margin: 6px 10px 0; height: 36px; line-height: 36px; }
+.subback { min-width: 70px; height: 32px; line-height: 30px; margin-top: 2px; border-radius: 16px; font-size: 14px; font-weight: 400; }
+body.dark  .subback { background: rgba(12,14,19,.58); border: 1px solid rgba(255,255,255,.1); color: #8fb6ff; }
+body.light .subback { background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.6); color: #2f6fe0; }
+.subname { font-size: 17px; font-weight: 400; }
+.lc-t { font-size: 15px; font-weight: 400; }
+.chart { border-radius: 8px; }
+body.dark  .chart { background: rgba(255,255,255,.05); }
+body.light .chart { background: rgba(20,30,50,.05); }
+.ctitle { font-weight: 400; }
+.ctitle .r > span { font-weight: 400; }
+.cb { font-weight: 400; }
+body.dark  .cx span, body.dark .nhead { background: rgba(255,255,255,.07); color: #c8ced7; }
+body.light .cx span, body.light .nhead { background: rgba(20,30,50,.06); color: #3a4350; }
+body.dark  .nrow { border-bottom: 1px solid rgba(255,255,255,.07); }
+body.light .nrow { border-bottom: 1px solid rgba(20,30,50,.07); }
+body.dark  .qa b { color: #f1f3f6; }
+.sms.un .smsn { color: #5b97ff; }
+body.dark  .st-card { background: rgba(12,14,19,.58); border: 1px solid rgba(255,255,255,.08); }
+body.light .st-card { background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.6); }
+body.dark  .grid2 td b, body.dark .memrow b { color: #f1f3f6; }
+
+/* PIN pad on the wallpaper */
+body.dark  a.kp { background: rgba(12,14,19,.58); color: #f1f3f6; }
+body.light a.kp { background: rgba(255,255,255,.72); color: #141820; }
+a.kp { font-family: num; font-weight: 400; font-size: 28px; border-radius: 18px; }
+a.kp.kpx { font-family: sans-serif; }
+.ring { background: transparent; box-sizing: border-box; border: 2px solid #9aa3b0; }
+.ring .ri { display: none; }
+.pin-slots .dot { background: #5b97ff; }
+body.dark  .pin-del { background: rgba(12,14,19,.58); color: #f1f3f6; }
+body.light .pin-del { background: rgba(255,255,255,.72); color: #141820; }
+.lock-title { font-weight: 400; }
+
+/* 列表卡片与说明文字 */
+.card.list { padding-top: 2px; padding-bottom: 2px; }
+.pxnote { margin: 8px 14px 0; }
+.pm-title { padding-top: 44px; font-size: 20px; }
+body.dark .pm-title { color: #c8ced7; } body.light .pm-title { color: #3a4350; }
+
+/* =====================================================================
+ * v3: stacked status speeds, cover 2B, home 3B + charge bar, WiFi chips,
+ * aligned key/value tables, control center, power sheet, round back button
+ * ===================================================================== */
+.blue { color: #3fa7ff; }
+body.light .blue { color: #1c7fd6; }
+.up { color: #ff9f5a; }
+body.light .up { color: #d9661f; }
+.hv { font-size: 14px; }
+body.dark .hv { color: #f1f3f6; } body.light .hv { color: #141820; }
+
+/* round back button + left title */
+.subtop { margin: 4px 10px 0; height: 40px; line-height: 40px; position: relative; overflow: hidden; }
+.bk { display: block; float: left; width: 32px; height: 32px; margin-top: 4px; border-radius: 16px; }
+body.dark  .bk { background: rgba(12,14,19,.58); border: 1px solid rgba(255,255,255,.1); }
+body.light .bk { background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.6); }
+.subtop .tl { float: left; margin-left: 10px; font-size: 19px; max-width: 220px; overflow: hidden; white-space: nowrap; }
+
+/* cover 2B */
+.card.cvcard { bottom: 46px; padding: 12px 14px 10px; }
+.cvtop { overflow: hidden; }
+.cvl { overflow: hidden; }
+.cvr { float: right; text-align: right; margin-top: 18px; }
+.cvbig { font-size: 52px; line-height: 54px; }
+.cvmid { font-size: 32px; line-height: 34px; }
+.cvspark { height: 34px; margin: 6px 0 0; }
+.cvfoot { margin-top: 6px; }
+.cover .hint { bottom: 12px; }
+.hcap { display: inline-block; height: 26px; line-height: 26px; padding: 0 14px 0 10px; border-radius: 13px; font-size: 12px; }
+body.dark  .hcap { background: rgba(12,14,19,.58); border: 1px solid rgba(255,255,255,.1); color: #f1f3f6; }
+body.light .hcap { background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.6); color: #141820; }
+.hup { display: inline-block; width: 14px; height: 14px; margin-right: 5px; vertical-align: middle; }
+
+/* home hero: both columns 64px, top row and bottom row line up */
+.hero .hl, .hero .hr { height: 64px; }
+.hero .hl { float: none; overflow: hidden; }
+.hero .gen { height: 44px; }
+.hero .k.hk { height: 16px; line-height: 16px; margin-top: 4px; font-size: 12px; }
+.hero .hr .pill { margin-top: 0; margin-bottom: 24px; }
+.hero .hr .k.hk { margin-top: 0; }
+.spk { height: 22px; margin-top: 4px; }
+.card.half.spdc { padding-bottom: 8px; }
+.spdc .v { font-size: 26px; line-height: 30px; }
+.mini { overflow: hidden; }
+.mini .dev3 { float: right; margin-top: 10px; font-size: 0; }
+.dev3 i { display: inline-block; width: 20px; height: 20px; line-height: 20px; margin-left: 3px; border-radius: 10px; text-align: center; font-size: 10px; font-style: normal; }
+body.dark  .dev3 i { background: rgba(255,255,255,.1); color: #c8ced7; }
+body.light .dev3 i { background: rgba(20,30,50,.07); color: #3a4350; }
+.batic { display: block; float: right; width: 32px; height: 24px; margin-top: 8px; }
+.pwrc .pwt, .pwrc .pwb { overflow: hidden; height: 18px; line-height: 18px; }
+.pwrc .eta { font-size: 18px; }
+/* top row holds the 18px ETA numerals: a taller unclipped line box, so the 12px Chinese label is not cut at the top */
+.pwrc .pwt { overflow: visible; height: 24px; line-height: 24px; }
+.pwrc .pwt + .pwm { margin-top: 0; }
+.pwm { overflow: hidden; margin-top: 4px; height: 30px; }
+.pwp { float: left; width: 62px; font-size: 28px; line-height: 30px; }
+.pbar { display: block; margin: 11px 0 0 66px; height: 8px; border-radius: 4px; overflow: hidden; }
+body.dark  .pbar { background: rgba(255,255,255,.14); }
+body.light .pbar { background: rgba(20,30,50,.1); }
+.pbar i { display: block; height: 8px; border-radius: 4px; }
+.pbar i.good { background: #4fd07a; } .pbar i.blue { background: #3fa7ff; }
+.pwb { margin-top: 4px; }
+
+/* WiFi chips */
+.chips { margin: 8px 10px 0; font-size: 0; }
+.chip { display: inline-block; box-sizing: border-box; width: 94px; height: 44px; padding-top: 5px; border-radius: 12px; text-align: center; vertical-align: top; }
+.chip + .chip { margin-left: 9px; }
+.chip b { display: block; font-size: 14px; font-weight: 400; line-height: 18px; }
+.chip span { display: block; font-size: 10px; line-height: 14px; }
+body.dark  .chip { background: rgba(12,14,19,.58); border: 1px solid rgba(255,255,255,.1); color: #f1f3f6; }
+body.light .chip { background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.6); color: #141820; }
+body.dark .chip span, body.light .chip span { color: #9aa3b0; }
+body.dark .chip.on, body.light .chip.on { background: #2f6fe0; border-color: #2f6fe0; color: #fff; }
+body.dark .chip.on span, body.light .chip.on span { color: #d6e3ff; }
+.chipbtn { display: inline-block; font-size: 11px; line-height: 20px; padding: 0 9px; border-radius: 10px; }
+body.dark  .chipbtn { background: rgba(255,255,255,.1); color: #f1f3f6; }
+body.light .chipbtn { background: rgba(20,30,50,.08); color: #141820; }
+
+/* key/value tables: table cells, vertically centred, fixed row height */
+.card.kvc { padding-top: 2px; padding-bottom: 2px; }
+.kv { display: table; width: 100%; padding: 0; height: 34px; overflow: visible; }
+.kv .k, .kv .v { display: table-cell; float: none; vertical-align: middle; height: 34px; }
+.kv .k { font-size: 13px; }
+.kv .v { text-align: right; font-size: 14px; }
+.kv .v.n { font-size: 15px; }
+
+/* network buttons x4 */
+.btns.four .btn { width: 68px; }
+.btns.four .btn + .btn { margin-left: 8px; }
+
+/* control center */
+.card.wide { display: block; overflow: hidden; height: 44px; line-height: 44px; padding: 0 14px; }
+body.dark  .card.wide { background: rgba(47,111,224,.38); }
+body.light .card.wide { background: rgba(214,228,255,.8); }
+.wide .wv { float: right; font-size: 14px; max-width: 200px; overflow: hidden; white-space: nowrap; }
+.card.tile { height: 70px; padding: 11px 12px; }
+.ts { margin-top: 8px; height: 30px; line-height: 15px; white-space: normal; overflow: hidden; }
+
+/* monitor 6A */
+.card.mon { overflow: hidden; padding: 10px 12px; }
+.mon .ml { float: left; width: 96px; }
+.mon .mv { font-size: 26px; line-height: 30px; margin-top: 1px; }
+.mon .k.xs { font-size: 11px; display: block; white-space: nowrap; overflow: hidden; }
+.mon .mc { margin-left: 104px; height: 56px; }
+
+/* cell lock */
+.clcur .pill, .clcur .mini-btn { float: right; margin-top: 2px; }
+.clbig { font-size: 30px; line-height: 36px; }
+.mini-btn { display: inline-block; height: 26px; line-height: 26px; padding: 0 12px; border-radius: 13px; font-size: 12px; }
+body.dark  .mini-btn { background: rgba(255,255,255,.1); color: #f1f3f6; }
+body.light .mini-btn { background: rgba(20,30,50,.08); color: #141820; }
+body.dark .mini-btn.pri, body.light .mini-btn.pri { background: #2f6fe0; color: #fff; }
+.pill.good i { background: #4fd07a; }
+.nb { overflow: hidden; height: 40px; line-height: 40px; font-size: 14px; }
+body.dark  .nb + .nb { border-top: 1px solid rgba(255,255,255,.09); }
+body.light .nb + .nb { border-top: 1px solid rgba(20,30,50,.08); }
+.nb .mini-btn { float: right; margin-top: 7px; margin-left: 10px; }
+.nb .nbv { float: right; }
+
+.seg3 .segc { width: 33.3%; }
+
+/* power bottom sheet (menu.html is an overlay: body transparent, theme on the wrapper) */
+body.mo { background: transparent; }
+.sheetbg { display: block; position: absolute; left: 0; top: 0; width: 320px; height: 480px; }
+.sheet { position: absolute; left: 10px; right: 10px; bottom: 10px; padding: 16px 12px 12px; border-radius: 20px; }
+.dark .sheet  { background: rgba(22,24,30,.96); border: 1px solid rgba(255,255,255,.1); color: #f1f3f6; }
+.light .sheet { background: rgba(250,251,253,.97); border: 1px solid rgba(20,30,50,.08); color: #141820; }
+.sht { text-align: center; font-size: 16px; }
+.shs { text-align: center; font-size: 12px; margin-top: 2px; color: #9aa3b0; }
+.pw3 { margin-top: 14px; font-size: 0; }
+.pwb2 { display: inline-block; box-sizing: border-box; width: 84px; height: 92px; padding-top: 20px; border-radius: 16px; text-align: center; vertical-align: top; }
+.pwb2 + .pwb2 { margin-left: 10px; }
+.pmi { display: block; width: 28px; height: 28px; margin: 0 auto; }
+.pml { display: block; font-size: 14px; margin-top: 8px; }
+.dark .pwb2.off  { background: rgba(255,106,82,.18); } .light .pwb2.off { background: rgba(214,59,35,.1); }
+.dark .pwb2.reb  { background: rgba(240,194,80,.16); } .light .pwb2.reb { background: rgba(176,131,0,.1); }
+.dark .pwb2.cx   { background: rgba(255,255,255,.08); } .light .pwb2.cx { background: rgba(20,30,50,.06); }
+.pwb2.armed.off { background: #ff6a52; color: #fff; }
+.pwb2.armed.reb { background: #f0c250; color: #1b1400; }
+.u { font-family: sans-serif; font-size: 12px; margin-left: 2px; color: #9aa3b0; }
+body.light .u { color: #5d6673; }
+a.kv { color: inherit; }
+.eye { display: inline-block; width: 22px; height: 16px; margin-left: 8px; vertical-align: middle; }
+
+/* ---- baseline alignment: label and value share one line box ----
+ * (floats / table cells each get their own line box, and the Chinese face
+ * and the numeral face have different ascents, so values drifted up/down) */
+.kv, .cli, .pwt, .pwb, .cvfoot, .nb, .srow, .card.wide { font-size: 0; white-space: nowrap; }
+.kv { display: block; height: 34px; line-height: 34px; }
+.kv .k, .kv .v { display: inline-block; float: none; vertical-align: baseline; height: auto; line-height: 34px; }
+.kv .k { width: 96px; font-size: 13px; }
+.kv .v { width: 174px; text-align: right; font-size: 14px; }
+.kv .v.n { font-size: 15px; }
+.cli { line-height: 36px; padding: 0; }
+.cli .cn, .cli .cip { display: inline-block; float: none; vertical-align: baseline; }
+.cli .cn { width: 150px; font-size: 14px; overflow: visible; }
+.cli .cip { width: 120px; text-align: right; font-size: 15px; }
+.pwt, .pwb { height: 20px; line-height: 20px; }
+.pl, .pr { display: inline-block; vertical-align: baseline; font-size: 12px; }
+.pwt .pl, .pwb .pl, .cvfoot .pl { width: 150px; }
+.pwt .pr, .pwb .pr, .cvfoot .pr { width: 120px; text-align: right; }
+.cvfoot .pl { width: 130px; } .cvfoot .pr { width: 140px; }
+.nb { height: 40px; line-height: 40px; }
+.nbl, .nbv { display: inline-block; vertical-align: baseline; font-size: 14px; }
+.nbl { width: 150px; } .nbv { width: 44px; text-align: right; }
+.nb .mini-btn { float: none; display: inline-block; vertical-align: baseline; margin: 0 0 0 12px; line-height: 26px; }
+.srow { line-height: 24px; }
+.srow .ct { display: inline-block; width: 200px; font-size: 14px; vertical-align: baseline; }
+.srow .sval { display: inline-block; float: none; width: 70px; text-align: right; font-size: 15px; vertical-align: baseline; }
+.card.wide .k, .card.wide .wv { display: inline-block; float: none; vertical-align: baseline; }
+.card.wide .k { width: 76px; font-size: 12px; }
+.card.wide .wv { width: 194px; text-align: right; font-size: 14px; max-width: none; }
+
+/* ---- screen page (16C) ---- */
+.card.entry { display: block; overflow: hidden; padding: 11px 14px; }
+.entry .chev { display: block; float: right; width: 16px; height: 36px; }
+.entry .et { display: block; font-size: 14px; line-height: 20px; }
+.entry .k { display: block; line-height: 16px; }
+.bigv { font-size: 22px; }
+.bigbar { display: block; position: relative; height: 56px; margin-top: 10px; border-radius: 16px; overflow: hidden; }
+body.dark  .bigbar { background: rgba(255,255,255,.14); }
+body.light .bigbar { background: rgba(20,30,50,.12); }
+.bigbar .sfill { display: block; height: 56px; border-radius: 0; background: #d9a53a; }
+body.light .bigbar .sfill { background: #e5a92e; }
+.bbhint { margin-top: 6px; }
+.aots { font-size: 0; margin-top: 10px; }
+.aot { display: inline-block; box-sizing: border-box; width: 82px; height: 40px; line-height: 40px; margin: 0 6px 8px 0; border-radius: 12px; text-align: center; font-size: 13px; vertical-align: top; }
+body.dark  .aot { background: rgba(255,255,255,.09); color: #f1f3f6; }
+body.light .aot { background: rgba(20,30,50,.07); color: #141820; }
+body.dark .aot.on, body.light .aot.on { background: #2f6fe0; color: #fff; }
+/* home hero: row 1 = generation + quality pill (centred on each other),
+ * row 2 = operator/band and signal numbers on one baseline */
+a.card.hero2 { display: block; }   /* tap -> 网络 page (act:gopage:signal) */
+a.card.pwrc { display: block; }    /* tap -> 电池与充电 */
+.hero2 .h2a { font-size: 0; white-space: nowrap; height: 46px; }
+.hero2 .h2a .gen { display: inline-block; width: 170px; font-size: 44px; line-height: 46px; vertical-align: middle; }
+.hero2 .h2p { display: inline-block; width: 100px; text-align: right; vertical-align: middle; }
+.hero2 .h2p .pill { margin-top: 0; }
+.hero2 .h2b { font-size: 0; white-space: nowrap; height: 18px; line-height: 18px; margin-top: 4px; }
+.hero2 .h2b .pl { width: 146px; font-size: 12px; }
+.hero2 .h2b .pr { width: 124px; text-align: right; font-size: 12px; padding-right: 2px; box-sizing: border-box; }
+.hero2 .h2p { font-size: 11px; line-height: 46px; height: 46px; }
+.hero2 .h2p .pill { vertical-align: middle; }
+.hero2 .h2a .gen { width: 184px; }
+.hero2 .h2pill { display: inline-block; box-sizing: border-box; width: 86px; height: 22px; line-height: 22px; padding: 0; margin: 0; text-align: center; font-size: 11px; vertical-align: middle; white-space: nowrap; }
+/* client rows with link rate */
+.cli.two { line-height: 17px; padding: 7px 0; }
+.cli.two .cn, .cli.two .cip { vertical-align: middle; }
+.cli .cs { display: block; font-size: 11px; color: #9aa3b0; }
+body.light .cli .cs { color: #5d6673; }
+.cli.two .cip { font-size: 16px; line-height: 34px; }
+body.dark .cli.two .cip { color: #f1f3f6; } body.light .cli.two .cip { color: #141820; }
+.dark .aot  { background: rgba(255,255,255,.09); color: #f1f3f6; }
+.light .aot { background: rgba(20,30,50,.07); color: #141820; }
+.dark .aot.on, .light .aot.on { background: #2f6fe0; color: #fff; }
+
+/* ---- 分页圆点、壁纸选项文字 ---- */
+.pxdots { text-align: center; margin-top: 2px; font-size: 12px; }
+.pxdots .dot { display: inline-block; width: 5px; height: 5px; margin: 0 3px; border-radius: 3px; }
+body.dark .pxdots .dot { background: rgba(255,255,255,.28); } body.light .pxdots .dot { background: rgba(20,30,50,.2); }
+body.dark .pxdots .dot.on { background: #f1f3f6; width: 14px; } body.light .pxdots .dot.on { background: #141820; width: 14px; }
+.wpo .wpl { color: transparent; }
+.wpo.wp-none .wpl { color: inherit; }
+.pxdots { margin: 4px 0 0; height: 18px; line-height: 18px; }
+/* brightness fill is painted natively (gradient that follows the level) */
+body.dark .bigbar .sfill, body.light .bigbar .sfill, .bigbar .sfill { background: transparent; }
+/* data usage card: wider number column than the battery bar */
+.pwp.usev { width: auto; min-width: 62px; margin-right: 10px; }
+.pwm .usev + .pbar { margin-left: 112px; }
+
+/* nearby cells (subpages/nbr.html) */
+.nbrow { overflow: hidden; padding: 6px 0 7px; }
+body.dark  .nbrow + .nbrow { border-top: 1px solid rgba(255,255,255,.09); }
+body.light .nbrow + .nbrow { border-top: 1px solid rgba(20,30,50,.08); }
+.nbrow .mini-btn, .nbrow .nbpill { float: right; margin: 4px 0 0 10px; }
+.nbrow .nbpill { margin-top: 7px; }
+.nbr-v { float: right; width: 66px; height: 34px; line-height: 34px; text-align: right; font-size: 0; white-space: nowrap; padding-right: 3px; box-sizing: border-box; }
+.nbr-v .n { font-size: 18px; }
+.nbr-v .u { font-size: 10px; margin-left: 2px; }
+.nbr-l { display: block; height: 34px; line-height: 34px; font-size: 0; white-space: nowrap; overflow: hidden; }
+.nbr-l .n { font-size: 14px; }
+.nbr-l .k { font-size: 11px; margin-left: 8px; }
+.nbr-bar { display: block; clear: both; height: 3px; border-radius: 2px; overflow: hidden; }
+body.dark  .nbr-bar { background: rgba(255,255,255,.08); }
+body.light .nbr-bar { background: rgba(20,30,50,.07); }
+.nbr-bar i { display: block; height: 3px; border-radius: 2px; background: #5b97ff; }
+.nbr-bar i.good { background: #4fd07a; } .nbr-bar i.mid { background: #f0c250; } .nbr-bar i.bad { background: #ff6a52; }
+.nbr-tag { display: inline-block; height: 16px; line-height: 16px; padding: 0 6px; margin-left: 6px; border-radius: 8px; font-size: 10px; }
+body.dark  .nbr-tag { background: rgba(79,208,122,.16); color: #6fe09a; }
+body.light .nbr-tag { background: rgba(24,154,72,.1); color: #189a48; }
+body.dark  .nbr-tag.nbr-warn { background: rgba(255,106,82,.16); color: #ff8a76; }
+body.light .nbr-tag.nbr-warn { background: rgba(214,59,35,.1); color: #d63b23; }
+.nbr-when { float: right; font-size: 11px; }
+.nbr-empty { padding: 8px 0 4px; font-size: 12px; line-height: 18px; }
+body.dark  .card.nbr-busy { color: #9aa3b0; } body.light .card.nbr-busy { color: #5c6573; }
+body.dark  .card.nbr-arm { background: rgba(160,40,24,.55); color: #fff; }
+body.light .card.nbr-arm { background: rgba(255,226,220,.9); }
+.nbr-rest { padding: 8px 0 2px; font-size: 11px; line-height: 17px; white-space: normal; }
+body.dark  .nbrow + .nbr-rest, body.dark  .nbr-empty + .nbr-rest { border-top: 1px solid rgba(255,255,255,.09); }
+body.light .nbrow + .nbr-rest, body.light .nbr-empty + .nbr-rest { border-top: 1px solid rgba(20,30,50,.08); }
+
+/* ---- one-screen layouts (网络 / WiFi / 设置, body.one): everything fits 320×480, no scrolling ---- */
+.one .ptitle { margin-top: 6px; }
+.one .card { margin: 7px 10px 0; }
+.one .duo { margin-top: 7px; }
+.one .card.half { margin: 0; }
+.one .card.half + .card.half { margin-left: 8px; }
+.one .pgpad { height: 16px; }
+/* half-width entry tiles with a native chevron */
+.card.tl2 { display: inline-block; box-sizing: border-box; width: 146px; padding: 9px 10px 9px 12px; overflow: hidden; }
+.tl2 .chev { display: block; float: right; width: 12px; height: 35px; }
+.tl2 .et { display: block; font-size: 14px; line-height: 19px; }
+.tl2 .k { display: block; font-size: 11px; line-height: 16px; white-space: nowrap; overflow: hidden; }
+body.dark  .card.tl2.busy { background: rgba(160,40,24,.55); }
+body.light .card.tl2.busy { background: rgba(255,226,220,.85); }
+/* 网络 */
+.one .sigc { padding: 9px 12px; }
+.one .sigc .v { font-size: 28px; line-height: 31px; margin-top: 1px; }
+.one .sigc .bar { margin-top: 5px; height: 6px; }
+.one .sigc .bar i { height: 6px; }
+.card.kvg { padding: 6px 12px 7px 14px; font-size: 0; }
+.kc { display: inline-block; box-sizing: border-box; width: 136px; padding: 3px 0; vertical-align: top; font-size: 13px; }
+.kc .k { display: block; font-size: 11px; line-height: 14px; }
+.kc .v { display: block; font-size: 13px; line-height: 18px; white-space: nowrap; overflow: hidden; }
+.kc .v.n { font-size: 14px; }
+.card.usec { padding: 7px 14px; }
+.urow { overflow: hidden; line-height: 21px; white-space: nowrap; }
+.usec .ur { float: right; font-size: 11px; }
+.usec .ul { display: inline-block; width: 60px; font-size: 12px; }
+.usec .uv { font-size: 16px; }
+.usec .uu { font-size: 12px; margin-left: 3px; }
+body.dark  .usec .uv { color: #f1f3f6; }
+body.light .usec .uv { color: #141820; }
+.usec .pbar { margin: 4px 0 0 0; height: 5px; }
+.one .btns { margin-top: 7px; }
+.one .btn { height: 34px; line-height: 32px; }
+/* WiFi */
+.ptsw { float: right; margin-top: 1px; }
+.ptst { float: right; margin-right: 8px; font-size: 12px; color: #9aa3b0; }
+body.light .ptst { color: #5d6673; }
+.one .qrcard { padding: 9px 12px; }
+.one .qr { width: 92px; height: 92px; margin-right: 12px; }
+.one .cred .k { font-size: 11px; }
+.one .cred .v { font-size: 14px; margin-bottom: 3px; }
+.one .chips { margin-top: 7px; }
+.chips.c4 .chip { width: 69px; height: 42px; padding-top: 4px; }
+.chips.c4 .chip + .chip { margin-left: 8px; }
+.card.clc { padding: 7px 14px 6px; }
+.one .cli { padding: 5px 0; font-size: 13px; }
+.cli.more { display: block; font-size: 12px; color: #8fb6ff; }
+body.light .cli.more { color: #2f6fe0; }
+/* 网关 / 地址池 / 租期: three aligned columns (label over value), same look as .kvg */
+.dh3 .kc { width: 108px; }
+.dh3 .kc + .kc + .kc { width: 56px; }
+/* 设置 */
+.card.wpc { padding: 8px 12px 9px; }
+.one .wps { margin-top: 0; }
+.one .wpo { width: 49px; height: 42px; }
+.one .seg { margin-top: 6px; }
+.one .segc, .one .seg5 .segc, .one .seg6 .segc { font-size: 12px; padding: 6px 0; }
+.tg { padding-left: 10px; font-size: 0; }
+.card.tgc { display: inline-block; box-sizing: border-box; width: 146px; height: 40px; margin: 5px 8px 0 0; padding: 4px 9px 4px 11px; vertical-align: top; font-size: 13px; overflow: hidden; }
+.tgc .sw { float: right; width: 38px; height: 22px; border-radius: 11px; margin-top: 4px; }
+.tgc .sw .kn { width: 16px; height: 16px; border-radius: 8px; }
+.tgc .sw.on .kn { left: 19px; }
+.tgc .chev { display: block; float: right; width: 12px; height: 30px; }
+.tgc .tl { display: block; font-size: 13px; line-height: 17px; white-space: nowrap; }
+.tgc .k { display: block; font-size: 11px; line-height: 14px; white-space: nowrap; overflow: hidden; }
+.card.rfc { padding: 4px 8px 4px 12px; overflow: hidden; }
+.rfl { float: left; width: 58px; line-height: 29px; font-size: 12px; }
+.rfc .seg { float: right; width: 212px; margin-top: 0; }
+.card.sysr { display: block; padding: 7px 10px 7px 12px; overflow: hidden; white-space: nowrap; }
+.sysr .chev { display: block; float: right; width: 12px; height: 18px; }
+.sysr .k { font-size: 12px; }
+.sysr .n { font-size: 13px; }
+
+/* ---- 锁频 page (one screen, staged edits) ---- */
+.card.blnow { padding: 6px 12px; overflow: hidden; margin-top: 5px; }
+.blnow .mini-btn { float: right; margin-top: 6px; }
+.blv { font-size: 14px; line-height: 19px; }
+body.dark  .card.blnow.warn { background: rgba(160,40,24,.5); border-color: rgba(255,106,82,.35); }
+body.light .card.blnow.warn { background: rgba(255,226,220,.85); }
+.card.blcard { padding: 5px 11px 6px; margin-top: 6px; }
+.blhd { font-size: 13px; line-height: 18px; overflow: hidden; margin-bottom: 3px; }
+.blsum { float: right; font-size: 11px; }
+.bltag { display: inline-block; margin-left: 6px; padding: 0 6px; height: 16px; line-height: 16px; border-radius: 8px; font-size: 10px; vertical-align: 1px; background: rgba(242,193,78,.2); color: #f2c14e; }
+.blg { font-size: 0; }
+.blc { display: inline-block; box-sizing: border-box; width: 63px; height: 34px; margin-right: 8px; padding-top: 2px; border-radius: 10px; text-align: center; vertical-align: top; position: relative; }
+.blg .blc:last-child { margin-right: 0; }
+.blc b { display: block; font-family: num; font-weight: 400; font-size: 15px; line-height: 17px; }
+.blc span { display: block; font-size: 9px; line-height: 11px; }
+.bl3 .blc { width: 86px; height: 28px; padding-top: 0; margin-right: 9px; }
+.bl3 .blc b { font-family: inherit; font-size: 13px; line-height: 26px; }
+body.dark  .blc { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: #f1f3f6; }
+body.light .blc { background: rgba(255,255,255,.6); border: 1px solid rgba(20,30,50,.12); color: #141820; }
+body.dark  .blc span { color: #9aa3b0; } body.light .blc span { color: #5d6673; }
+body.dark .blc.on, body.light .blc.on { background: #2f6fe0; border-color: #2f6fe0; color: #fff; }
+body.dark .blc.on span, body.light .blc.on span { color: #d6e3ff; }
+body.dark .blc.dirty, body.light .blc.dirty { border: 2px solid #f2c14e; }
+.blc.cur:after { content: ""; position: absolute; top: 4px; right: 5px; width: 6px; height: 6px; border-radius: 3px; background: #4cc46a; }
+.blmore { display: block; text-align: right; font-size: 11px; line-height: 14px; margin-top: 3px; color: #8fb6ff; }
+body.light .blmore { color: #2f6fe0; }
+.blbar { margin: 6px 10px 0; font-size: 0; }
+.blbar .btn { height: 40px; line-height: 15px; padding-top: 5px; vertical-align: top; font-size: 13px; }
+.blside { width: 104px; padding-top: 0 !important; line-height: 38px !important; }
+.blbtn { width: 188px; margin-left: 8px; }
+.blbtn small { display: block; font-size: 10px; line-height: 13px; margin-top: 2px; white-space: nowrap; overflow: hidden; }
+body.dark .blbtn.pri, body.light .blbtn.pri { background: #2f6fe0; border-color: #2f6fe0; color: #fff; }
+body.dark .btn.arm, body.light .btn.arm { background: #e0732f; border-color: #e0732f; color: #fff; }
+.blbtn.dim { opacity: .5; }
+
+/* ---- 电池与充电 page ---- */
+.card.bhero { padding: 8px 12px 9px; }
+.bst { float: right; text-align: right; margin-top: 6px; }
+.bst b { display: block; font-size: 14px; font-weight: 400; color: #8fb6ff; }
+body.light .bst b { color: #2f6fe0; }
+.bst .k { display: block; font-size: 11px; }
+.bbig { font-size: 40px; line-height: 44px; }
+.bbig .u { font-size: 14px; margin-left: 3px; }
+.bhero .bar { margin-top: 6px; }
+.b3 { font-size: 0; margin-top: 7px; }
+.b3 .kc { width: 91px; }
+.card.tgw { display: block; overflow: hidden; padding: 8px 10px 8px 12px; }
+.tgw .sw { float: right; width: 38px; height: 22px; border-radius: 11px; margin-top: 6px; }
+.tgw .sw .kn { width: 16px; height: 16px; border-radius: 8px; }
+.tgw .sw.on .kn { left: 19px; }
+.tgw .tl { display: block; font-size: 14px; line-height: 19px; }
+.tgw .k { display: block; font-size: 11px; line-height: 15px; }
+.card.bset { padding: 7px 11px 9px; }
+.bset .seg { margin-top: 4px; }
+.b5 .blc { width: 51px; height: 28px; padding-top: 0; margin-right: 5px; }
+.b5 .blc b { font-family: inherit; font-size: 12.5px; line-height: 26px; }
+.bset .b5 { margin-top: 5px; }
+
+/* ---- WiFi 功率 page ---- */
+.card.txhero { padding: 8px 12px 9px; }
+.txnow { float: right; text-align: right; margin-top: 4px; }
+.txnow .k { display: block; font-size: 11px; }
+.txnow .txv { font-size: 12px; margin-top: 2px; }
+body.dark .txnow .txv { color: #c8ced7; } body.light .txnow .txv { color: #3a4350; }
+.card.txo { display: block; overflow: hidden; padding: 8px 12px; }
+.txo .txdb { float: right; margin-top: 10px; font-size: 12px; }
+.txo .tl { display: block; font-size: 15px; line-height: 20px; }
+.txo .k { display: block; font-size: 11px; line-height: 15px; }
+body.dark .card.txo.on, body.light .card.txo.on { background: #2f6fe0; border-color: #2f6fe0; color: #fff; }
+body.dark .card.txo.on .k, body.light .card.txo.on .k { color: #d6e3ff; }
+.txnote { margin: 8px 14px 0; font-size: 11px; line-height: 16px; }
+
+/* ---- 测速 v3: absolute grid on the 320x480 page. Gutters 10 px; 3 columns x 100 px;
+ * 2 columns x 145 px + 10 px gap. Ring, live chart and GO button are painted natively. ---- */
+.sthdr { position: absolute; left: 10px; top: 76px; width: 300px; height: 44px; font-size: 0; }
+.sth { display: inline-block; width: 100px; text-align: center; vertical-align: top; }
+.sth .k { font-size: 11px; line-height: 15px; }
+.stdot { display: inline-block; width: 7px; height: 7px; border-radius: 4px; margin-right: 4px; vertical-align: 1px; }
+.stdot.pg { background: #f2c14e; } .stdot.dl { background: #1fd1d6; } .stdot.ul { background: #a970ff; }
+.stv { font-size: 24px; line-height: 28px; }
+.stv.ph { font-size: 18px; letter-spacing: 1px; }
+.stv .u, .stbig .u { font-size: 11px; margin-left: 2px; color: #9aa3b0; }
+body.dark .stv.dim { color: rgba(241,243,246,.32); } body.light .stv.dim { color: rgba(20,30,50,.32); }
+.stgo { position: absolute; left: 50px; top: 122px; width: 220px; height: 220px; display: block; }
+.stfail { position: absolute; left: 10px; top: 388px; width: 300px; text-align: center; font-size: 11px; color: #ff8a73; }
+.stmiss { position: absolute; left: 10px; top: 200px; width: 300px; text-align: center; font-size: 12px; }
+.string { position: absolute; left: 60px; top: 134px; width: 200px; height: 144px; display: block; }
+.one .card.stlive { position: absolute; left: 10px; top: 290px; width: 298px; height: 118px; margin: 0; padding: 0; }   /* + 1px border = 300x120 */
+.one .card.strc { position: absolute; top: 76px; width: 119px; height: 124px; margin: 0; padding: 9px 12px; }   /* outer 145x144: litehtml ignores box-sizing on absolute boxes */
+.one .card.strc.l { left: 10px; } .one .card.strc.r { left: 165px; }
+.strc .k { font-size: 11px; line-height: 15px; }
+.stbig { font-size: 40px; line-height: 46px; }
+.stbig.dl { color: #7fe9ec; } .stbig.ul { color: #cfa9ff; }
+body.light .stbig.dl { color: #0f8f94; } body.light .stbig.ul { color: #7a3fe0; }
+.stspk { height: 54px; margin-top: 4px; }
+.one .card.ststat { position: absolute; left: 10px; top: 230px; width: 298px; height: 42px; margin: 0; padding: 6px 0 0; font-size: 0; }   /* outer 300x50 */
+.stc { display: inline-block; width: 100px; text-align: center; vertical-align: top; }
+.stc.sep { width: 98px; border-left: 1px solid rgba(255,255,255,.08); }
+body.light .stc.sep { border-left-color: rgba(20,30,50,.1); }
+.stc .k { font-size: 10.5px; line-height: 14px; }
+.stc .n { font-size: 20px; line-height: 24px; }
+.stc .u { font-size: 10px; margin-left: 2px; }
+.stagain { position: absolute; left: 10px; top: 292px; width: 297px; height: 35px; line-height: 35px; border-radius: 19px; text-align: center; font-size: 14px; border: 1.5px solid #1fd1d6; display: block; }
+body.dark .stagain { color: #bff6f7; } body.light .stagain { color: #0f8f94; }
+.stpills { position: absolute; left: 10px; top: 352px; width: 300px; height: 28px; font-size: 0; }
+.stpills.res { top: 342px; }
+.stpill { display: inline-block; width: 94px; height: 26px; line-height: 26px; border-radius: 14px; text-align: center; font-size: 12px; }
+.stpill + .stpill { margin-left: 6px; }
+body.dark .stpill { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); color: #f1f3f6; }
+body.light .stpill { background: rgba(255,255,255,.7); border: 1px solid rgba(20,30,50,.12); color: #141820; }
+.stpill .k { font-size: 12px; }
+.stisp { position: absolute; left: 10px; top: 428px; width: 300px; height: 32px; font-size: 0; text-align: center; white-space: nowrap; }   /* carrier only, centred */
+.stic { display: inline-block; width: 25px; height: 25px; line-height: 25px; border-radius: 14px; text-align: center; font-size: 12px; margin: 1px 8px 0 0; vertical-align: top; }
+body.dark .stic { border: 1.5px solid rgba(255,255,255,.35); } body.light .stic { border: 1.5px solid rgba(20,30,50,.35); }
+.stit { display: inline-block; vertical-align: top; margin-top: 1px; text-align: left; white-space: nowrap; }
+.stit b { display: block; font-size: 12px; font-weight: 400; line-height: 15px; }
+.stit .k { display: block; font-size: 10px; line-height: 13px; }
+.pwrb { display: block; float: right; width: 28px; height: 28px; }   /* 控制中心 power button (glyph drawn natively) */
+.thchips { margin-top: 6px; }
+.rfc .rfchips { float: right; width: 212px; }
+.rfc .rfchips .blc { width: 38px; margin-right: 5px; }
+.rfc .rfchips .blc:last-child { margin-right: 0; }
+.thchips .blc { width: 85px; }   /* 3 × 85 + 2 × 9 = 273 fits the 274px card */
+
+/* ---- 插线选择供电方式: bottom sheet (modal 5). Outer 300 wide at left 10; rows 50 tall. ---- */
+.prsheet { position: absolute; left: 10px; width: 300px; border-radius: 20px; overflow: hidden; padding: 0; }
+.prsheet.dark { background: #161c26; color: #f1f3f6; } .prsheet.light { background: #ffffff; color: #141820; }
+.prttl { margin: 18px 18px 0; height: 22px; line-height: 22px; font-size: 17px; }
+.prttl b { font-weight: 400; }
+.prpct { float: right; font-size: 16px; color: #9aa6b6; }
+.prsub { margin: 2px 18px 0; height: 22px; line-height: 16px; font-size: 11.5px; color: #8b95a5; }
+.prli { display: block; height: 49px; padding: 0 18px; border-top: 1px solid rgba(255,255,255,.06); font-size: 15px; }
+.prsheet.light .prli { border-top-color: rgba(20,30,50,.08); }
+.prt { display: block; line-height: 49px; }
+.prli.two .prt { line-height: 19px; padding-top: 7px; }
+.prs { display: block; font-size: 11px; line-height: 15px; color: #8b95a5; }
+.prck { float: right; width: 17px; height: 17px; margin-top: 15px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,.28); }
+.prsheet.light .prck { border-color: rgba(20,30,50,.28); }
+.prli.on .prck { width: 8px; height: 8px; border: 6px solid #1fd1d6; }
+.prsw { float: right; position: relative; width: 40px; height: 24px; margin-top: 12px; border-radius: 12px; }
+.prsw.off { background: rgba(255,255,255,.2); } .prsw.on { background: #1fd1d6; }
+.prsheet.light .prsw.off { background: rgba(20,30,50,.18); }
+.prsw i { position: absolute; top: 3px; width: 18px; height: 18px; border-radius: 9px; background: #fff; }
+.prsw.off i { left: 3px; } .prsw.on i { left: 19px; }
+/* countdown to auto-close: an inset rounded track like the battery bars, not a strip on the sheet edge */
+.prbar { margin: 8px 18px 0; height: 4px; border-radius: 2px; background: rgba(255,255,255,.08); }
+.prsheet.light .prbar { background: rgba(20,30,50,.08); }
+.prbar i { display: block; height: 4px; border-radius: 2px; background: #1fd1d6; }
+/* 底部小提示：贴底往上长，字多时自动换行，不会被屏幕底边切掉 */
+.toast.tcap { left: 24px; right: 24px; top: auto; bottom: 14px; height: auto; line-height: 18px; padding: 7px 14px; border-radius: 16px; font-size: 12.5px; background: #161c26; color: #f1f3f6; }
+
+/* ---- 锁屏 v2 (design A): date / clock / three widgets / speed card. Absolute boxes are
+ * content-sized (litehtml ignores box-sizing on them) and every text line is nowrap. ---- */
+.cv2 .date { position: absolute; left: 0; top: 40px; width: 320px; margin: 0; text-align: center; font-size: 13px; line-height: 16px; }
+.cv2 .clock { position: absolute; left: 0; top: 58px; width: 320px; margin: 0; text-align: center; font-size: 92px; line-height: 100px; }
+.cvw { position: absolute; left: 26px; top: 190px; width: 268px; height: 84px; display: flex; justify-content: space-between; }
+.cvwc { width: 70px; text-align: center; }
+.cvring { width: 66px; height: 66px; margin: 0 auto; }
+.cvwl { display: block; width: 70px; height: 14px; line-height: 14px; margin-top: 3px; font-size: 11px; overflow: hidden; white-space: nowrap; }
+.cv2 .card.cvcard { top: 294px; bottom: auto; }
+.cv2 .cvspark { height: 40px; }
+
+/* ---- 流量套餐: lock-screen row, network card link, settings page. Card content is 270 px wide. ---- */
+.cv2 .cvspark { height: 30px; }
+.cvdata { margin-top: 7px; height: 16px; line-height: 16px; font-size: 0; white-space: nowrap; overflow: hidden; }
+.cvdl { display: inline-block; width: 150px; font-size: 11px; }
+.cvdv { font-size: 14px; }
+body.dark .cvdv { color: #f1f3f6; } body.light .cvdv { color: #141820; }
+.cvdr { display: inline-block; width: 120px; text-align: right; font-size: 11px; }
+.cvbar { display: block; height: 5px; margin-top: 5px; border-radius: 3px; overflow: hidden; }
+body.dark .cvbar { background: rgba(255,255,255,.14); } body.light .cvbar { background: rgba(20,30,50,.1); }
+.cvbar i { display: block; height: 5px; border-radius: 3px; }
+.cvbar i.teal, .pbar i.teal, .dpc .pbar i.teal { background: #1fd1d6; }
+.cvbar i.mid, .pbar i.mid { background: #f0b84a; } .cvbar i.bad, .pbar i.bad { background: #ff6a52; }
+a.card.usec { display: block; }
+.dpc .dpt { display: block; margin-bottom: 8px; font-size: 11px; }
+.dpseg .blc { width: 130px; height: 32px; margin-right: 10px; padding-top: 0; }
+.dpseg .blc b, .dpg .blc b, .dpst .blc b { font-family: inherit; font-size: 13px; line-height: 30px; }
+.dphd { height: 28px; line-height: 28px; overflow: hidden; white-space: nowrap; }
+.dpr { float: right; }
+.dpgb { font-size: 22px; }
+.dpg { margin-top: 8px; }
+.dpg .blc { width: 84px; height: 32px; margin-right: 9px; padding-top: 0; }
+.dpst { margin-top: 10px; }
+.dpst .blc { width: 60px; height: 32px; margin-right: 0; padding-top: 0; }
+.dpst .blc b { font-size: 18px; }
+.dpsl { display: inline-block; width: 150px; height: 32px; line-height: 32px; text-align: center; font-size: 11px; vertical-align: top; }
+.dprow { height: 24px; line-height: 24px; overflow: hidden; white-space: nowrap; }
+.dpv { font-size: 18px; } .dpv2 { font-size: 15px; }
+.dpc .pbar { margin: 4px 0 4px; height: 6px; }
+.dpc .pbar i { height: 6px; }
+.dpnote { display: block; margin-top: 6px; font-size: 11px; }
+
+/* ---- 关于本机 (one screen) + 高铁 / 漫游 tags ---- */
+.teal { color: #1fd1d6; } .amber { color: #f0b84a; }
+a.card.abc { display: block; }
+.card.abc { padding: 9px 14px; }
+.abhd { height: 28px; line-height: 28px; overflow: hidden; white-space: nowrap; }
+.abmodel { font-size: 19px; }
+.abr { float: right; font-size: 11px; }
+.abc .kv { height: 24px; line-height: 24px; }
+.abc .kv .k { font-size: 12px; }
+.abt { display: block; font-size: 11px; line-height: 16px; }
+.card.abg { padding: 8px 0; font-size: 0; white-space: nowrap; }
+.abgc { display: inline-block; width: 99px; text-align: center; vertical-align: top; }
+.abgc.sep { width: 98px; border-left: 1px solid rgba(255,255,255,.08); }
+body.light .abgc.sep { border-left-color: rgba(20,30,50,.1); }
+.abgc .k { font-size: 11px; }
+.abgv { font-size: 18px; }
+.ablink { display: block; margin-top: 10px; text-align: center; font-size: 11px; }
+body.dark .abc .kv + .kv, body.light .abc .kv + .kv, body.dark .abc .kv, body.light .abc .kv { border: 0; }
+
+/* ---- 短信详情页 (replaces the old dialog) ---- */
+.card.sdc { min-height: 318px; padding: 12px 16px 14px; }   /* nav lands ~14 px above the bottom edge */
+.sdt { display: block; font-size: 11px; line-height: 16px; margin-bottom: 6px; }
+.sdb { font-size: 14px; line-height: 23px; }
+body.dark .sdb { color: #eef0f4; } body.light .sdb { color: #141820; }
+.sdl { color: #1fd1d6; word-break: break-all; }
+body.light .sdl { color: #0f8f94; }
+.sdnav { margin: 12px 10px 0; height: 30px; font-size: 0; white-space: nowrap; }
+.sdp { display: inline-block; width: 94px; height: 28px; line-height: 28px; text-align: center; border-radius: 15px; font-size: 12px; }
+body.dark .sdp { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); color: #f1f3f6; }
+body.light .sdp { background: rgba(255,255,255,.7); border: 1px solid rgba(20,30,50,.12); color: #141820; }
+body.dark .sdp.off, body.light .sdp.off { color: rgba(150,160,175,.45); }
+.sdpos { display: inline-block; width: 108px; height: 30px; line-height: 30px; text-align: center; font-size: 12px; vertical-align: top; }
+.nw { display: inline-block; white-space: nowrap; }
+
+/* ---- 扫描所有频段 (card content 270 px) ---- */
+.bsbtn { display: block; margin: 12px 10px 0; height: 35px; line-height: 35px; border-radius: 19px; text-align: center; font-size: 14px; border: 1.5px solid #1fd1d6; }
+body.dark .bsbtn { color: #bff6f7; } body.light .bsbtn { color: #0f8f94; }
+.bsbtn.ghost { border-color: rgba(150,160,175,.4); }
+body.dark .bsbtn.ghost { color: #c9d1dc; } body.light .bsbtn.ghost { color: #3a4350; }
+.bshint { margin: 8px 10px 0; text-align: center; font-size: 11px; }
+.bslast { color: #1fd1d6; }
+a.card.bsnow { display: block; overflow: hidden; white-space: nowrap; }
+.bsnt { font-size: 14px; } .bsr { float: right; font-size: 11px; }
+.bscft { font-size: 14px; line-height: 20px; }
+.bscfk { display: block; font-size: 11px; line-height: 16px; margin-top: 2px; }
+.bscfb { margin-top: 10px; }
+.bscfb .blc { width: 130px; height: 32px; margin-right: 10px; padding-top: 0; }
+.bscfb .blc b { font-family: inherit; font-size: 13px; line-height: 30px; }
+.bsph { height: 22px; line-height: 22px; overflow: hidden; white-space: nowrap; }
+.bspt { font-size: 14px; }
+.bsbar { display: block; height: 5px; margin-top: 8px; border-radius: 3px; overflow: hidden; }
+body.dark .bsbar { background: rgba(255,255,255,.12); } body.light .bsbar { background: rgba(20,30,50,.1); }
+.bsbar i { display: block; height: 5px; border-radius: 3px; background: #1fd1d6; }
+.bsbar i.good { background: #4fd07a; } .bsbar i.mid { background: #f0b84a; } .bsbar i.bad { background: #ff6a52; }
+.bsbar.sm { width: 66px; margin-top: 4px; }
+.bspn { display: block; margin-top: 6px; font-size: 11px; }
+.card.bslist { padding: 4px 14px; }
+.bsr2 { height: 30px; line-height: 30px; overflow: hidden; white-space: nowrap; font-size: 13px; }
+.bsr2 + .bsr2, .bsrow + .bsr2, .bsrow + .bsrow, .bsr2 + .bsrow { border-top: 1px solid rgba(255,255,255,.06); }
+.bsr2.mu { opacity: .55; }
+.bsb { display: inline-block; width: 44px; font-size: 16px; }
+.bsok { color: #4fd07a; margin-right: 6px; }
+.bsv { font-size: 15px; } .bsv.good { color: #4fd07a; } .bsv.mid { color: #f0b84a; } .bsv.bad { color: #ff6a52; }
+.bsrow { height: 46px; white-space: nowrap; overflow: hidden; font-size: 0; }
+.bsrow .bsb { vertical-align: middle; line-height: 46px; }
+.bsmid { display: inline-block; width: 166px; vertical-align: middle; font-size: 12px; }
+.bstag { display: inline-block; height: 15px; line-height: 15px; padding: 0 5px; margin-left: 5px; border-radius: 8px; font-size: 10px; }
+.bstag.best { background: rgba(79,208,122,.2); color: #7ee08f; } .bstag.cur { background: rgba(63,167,255,.2); color: #8cc8ff; }
+.bslk { display: inline-block; width: 50px; height: 24px; line-height: 24px; margin-left: 8px; border-radius: 13px; text-align: center; font-size: 12px; vertical-align: middle; }
+body.dark .bslk { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); color: #f1f3f6; }
+body.light .bslk { background: rgba(255,255,255,.7); border: 1px solid rgba(20,30,50,.14); color: #141820; }
+body.dark .bslk.on, body.light .bslk.on { background: #2f6fe0; border-color: #2f6fe0; color: #fff; }
+.bshd { margin: 10px 14px 0; height: 18px; line-height: 18px; white-space: nowrap; overflow: hidden; font-size: 11px; }
+.bsre { float: right; color: #8cc8ff; font-size: 11px; }
+.bsl1 { display: block; height: 20px; line-height: 20px; white-space: nowrap; overflow: hidden; }
+.bsl2 { display: block; height: 16px; line-height: 16px; white-space: nowrap; overflow: hidden; }
+.bsl2 .bsbar.sm { display: inline-block; vertical-align: middle; margin-top: 0; }
+
+/* ---- WiFi 中继 ---- */
+.card.rlent { display: block; height: 40px; position: relative; padding: 9px 14px; font-size: 0; white-space: nowrap; }
+.rlet { display: block; font-size: 15px; height: 21px; line-height: 21px; }
+.rles { display: block; font-size: 12px; height: 18px; line-height: 18px; width: 250px; overflow: hidden; }
+.rlchev { position: absolute; right: 14px; top: 17px; font-size: 20px; line-height: 20px; color: #8b95a5; }
+.rlsw { display: block; height: 30px; font-size: 0; white-space: nowrap; }
+.rlswt { display: inline-block; width: 228px; font-size: 15px; line-height: 30px; vertical-align: middle; }
+.rlsw .sw { vertical-align: middle; }
+.rlname { margin-top: 8px; height: 30px; line-height: 30px; font-size: 0; white-space: nowrap; overflow: hidden; }
+.rlnm { font-size: 22px; font-weight: 700; vertical-align: middle; }
+.rlnm.sm { font-size: 17px; }
+.rltag { display: inline-block; height: 18px; line-height: 18px; padding: 0 7px; margin-left: 8px; border-radius: 9px; font-size: 11px; vertical-align: middle; }
+.rltag.ok { background: rgba(79,208,122,.2); color: #7ee08f; }
+.rltag.cur { background: rgba(63,167,255,.2); color: #8cc8ff; }
+.rltag.warn { background: rgba(240,184,74,.2); color: #f0c86a; }
+.rltag.bad { background: rgba(255,106,82,.2); color: #ff8a7a; }
+body.light .rltag.ok { color: #23854a; } body.light .rltag.cur { color: #2560c8; }
+body.light .rltag.warn { color: #9a6a10; } body.light .rltag.bad { color: #c0392b; }
+.rlsub { margin-top: 3px; font-size: 12px; line-height: 17px; }
+.rlsg { font-size: 14px; }
+.rlg { margin-top: 10px; font-size: 0; white-space: nowrap; }
+.rlgc { display: inline-block; width: 90px; vertical-align: top; overflow: hidden; }
+.rlgc .k { font-size: 11px; }
+.rlgv { font-size: 14px; }
+.card.rll { padding: 2px 14px; }
+.rlrow { display: block; height: 44px; line-height: 44px; font-size: 0; white-space: nowrap; overflow: hidden; border-top: 1px solid rgba(255,255,255,.07); }
+.rlrow:first-child { border-top: 0; }
+body.light .rlrow { border-top-color: rgba(20,30,50,.08); }
+.rlrow.rlfill, body.light .rlrow.rlfill { border-top-color: transparent; }
+.rlrt { float: left; width: 138px; height: 44px; font-size: 15px; overflow: hidden; }
+.rlrr { float: right; width: 82px; height: 44px; text-align: right; font-size: 12px; overflow: hidden; }
+.rlar { font-size: 19px; color: #8b95a5; margin-left: 4px; }
+.rlrr .n { font-size: 14px; }
+.rlrow.mu .rlrt { opacity: .45; }
+.rlnote { margin: 10px 14px 0; font-size: 12px; line-height: 17px; }
+/* list cards: rows carry their own spacing, so only a little card padding */
+.card.rll { padding-top: 4px; padding-bottom: 4px; }
+.pxdots.rldots { margin: 6px 0 0; height: 10px; line-height: 10px; }
+.bsbtn.rlrs { margin-top: 10px; }
+.rlstl { margin-left: 8px; font-size: 11px; }
+.card.rlpt { padding: 10px 14px 12px; }
+.rlptt { font-size: 15px; color: #f0c86a; margin-bottom: 3px; }
+body.light .rlptt { color: #9a6a10; }
+.rlpt .bsbtn { margin: 10px 0 0; }
+.rlqr .qr { width: 118px; height: 118px; }
+.rlqt.rlopt { margin-top: 0; }
+.bsbtn.rlopb { margin: 12px 0 2px; }
+.rlqt { margin-top: 26px; font-size: 16px; line-height: 23px; }
+.rlqk { margin-top: 6px; font-size: 12px; }
+.rlw { font-size: 14px; margin-bottom: 3px; }
+
+/* 中继 G: signal ring card + icon rows */
+.card.rlc2 { padding: 14px; overflow: hidden; }
+.rlring { float: left; width: 96px; height: 96px; position: relative; }
+.rlrv { position: absolute; left: 0; top: 33px; width: 96px; height: 30px; line-height: 30px; text-align: center; white-space: nowrap; font-size: 0; }
+.rlrv .n { font-size: 24px; }
+.rlru { font-size: 11px; color: #a3aebd; }
+body.light .rlru { color: #5d6673; }
+.rlr { margin-left: 110px; height: 96px; }
+.rlnr { height: 30px; line-height: 30px; white-space: nowrap; font-size: 0; }
+.rlnm2 { display: inline-block; width: 112px; font-size: 20px; font-weight: 700; overflow: hidden; vertical-align: middle; }
+.rlsw2 { float: right; margin-top: 2px; }
+.rlsub2 { margin-top: 3px; font-size: 12px; line-height: 18px; white-space: nowrap; overflow: hidden; }
+.rlkl { margin-top: 9px; font-size: 11px; line-height: 14px; }
+.rlbig { font-size: 12px; line-height: 22px; }
+.rlbig .n { font-size: 18px; }
+.rlg2 { clear: both; padding-top: 12px; font-size: 0; white-space: nowrap; }
+.rlg2c { display: inline-block; width: 115px; height: 35px; overflow: hidden; white-space: nowrap; padding: 6px 9px; border-radius: 10px; background: rgba(0,0,0,.28); vertical-align: top; }
+.rlg2c.r2 { margin-left: 6px; }
+body.light .rlg2c { background: rgba(20,30,50,.06); }
+.rlg2c .k { font-size: 11px; line-height: 15px; }
+.rlg2v { font-size: 14px; }
+.rlg2u { font-size: 11px; }
+.rlbd { display: inline-block; height: 16px; line-height: 16px; padding: 0 5px; border-radius: 5px; font-size: 10px; font-weight: 700; }
+.rlbd.c5 { background: rgba(91,151,255,.22); color: #9cc0ff; }
+.rlbd.c24 { background: rgba(169,139,255,.22); color: #cbb8ff; }
+body.light .rlbd.c5 { color: #2560c8; } body.light .rlbd.c24 { color: #6a46c8; }
+.rlic { float: left; width: 30px; height: 30px; margin: 7px 10px 0 0; border-radius: 9px; text-align: center; line-height: 30px; }
+/* main relay page: slightly shorter rows so the connected view fits one screen */
+.rlm .rlrow { height: 40px; line-height: 40px; }
+.rlm .rlic { margin-top: 5px; }
+.rlic.g { background: rgba(79,208,122,.16); } .rlic.b { background: rgba(91,151,255,.16); }
+.rlic.vt { background: rgba(169,139,255,.16); } .rlic.w { background: rgba(255,255,255,.08); }
+body.light .rlic.w { background: rgba(20,30,50,.07); }
+.rlicn { font-size: 15px; color: #8ae6a8; }
+.rlicn.mu { color: #a3aebd; }
+.rlsv { font-size: 14px; margin-left: 6px; }
+.rlrr .rlbd { vertical-align: 1px; }
+.card.rlpt2 { padding: 12px 14px; background: rgba(240,184,74,.12); border: 1px solid rgba(240,184,74,.3); }
+.rlpt2 .rlptt { font-size: 15px; font-weight: 700; color: #f6cd7d; margin-bottom: 0; }
+.rlptk { color: #d9b26a; margin-top: 2px; }
+.rlptb { display: block; margin-top: 10px; height: 36px; line-height: 36px; border-radius: 18px; text-align: center; background: #f0b84a; color: #2a1d05; font-size: 14px; font-weight: 700; }
+.card.rlwc { padding: 12px 14px; background: rgba(240,184,74,.12); border: 1px solid rgba(240,184,74,.3); overflow: hidden; }
+.rlwi { float: left; width: 20px; height: 34px; margin-right: 10px; }
+.rlwt { overflow: hidden; font-size: 13px; color: #f6cd7d; line-height: 18px; }
+.rlwk { color: #d9b26a; }
+
+/* 控制中心磁贴高度 */
+.tiles .card.tile { height: 67px; }
+
+/* 中继设置 */
+.card.rlsc { padding: 12px 14px; }
+.rlsl { font-size: 13px; color: #a3aebd; margin-bottom: 8px; }
+body.light .rlsl { color: #5d6673; }
+.rlseg { font-size: 0; white-space: nowrap; }
+.rlsb { display: inline-block; width: 84px; height: 34px; line-height: 34px; margin-right: 10px; border-radius: 10px; text-align: center; font-size: 14px; }
+.rlseg .rlsb:last-child { margin-right: 0; }
+body.dark .rlsb { background: rgba(255,255,255,.08); color: #f1f3f6; }
+body.light .rlsb { background: rgba(20,30,50,.07); color: #141820; }
+body.dark .rlsb.on, body.light .rlsb.on { background: #2f6fe0; color: #fff; }
+.rlsn { margin-top: 8px; font-size: 11.5px; line-height: 16px; }
+.rlrow.rlt { height: 56px; line-height: normal; }
+.rltl { float: left; width: 200px; padding-top: 9px; font-size: 15px; line-height: 20px; overflow: hidden; }
+.rltk { display: block; font-size: 11px; line-height: 16px; white-space: nowrap; overflow: hidden; }
+.rltsw { float: right; margin-top: 15px; }
+.rlrow.rlt.mu .rltl, .rlrow.rlt.mu .rltsw { opacity: .45; }
+.pgpad.rlpad { height: 12px; }   /* relay views are laid out to fit one screen */
+
+/* ---- 升级高级版（subpages/upgrade.html） ---- */
+.upc { text-align: center; padding-bottom: 12px; }
+.upqr { display: block; width: 172px; height: 172px; margin: 4px auto 8px; }
+.upt { font-size: 15px; line-height: 22px; }
+.upa { font-size: 17px; font-weight: bold; }
+.upk { margin-top: 6px; }
+.upw { margin: 8px 12px 0; }
+.upo { text-decoration: line-through; }
+.btns .btn.upb { width: 300px; }
+
+/* ---- 首页速率卡（上下行合一张，一张图两条线）、流量 / 已连接两格、控制中心中继格和设备条 ---- */
+.card.spd2 { padding: 10px 14px 6px; overflow: hidden; }
+.sp2l { overflow: hidden; }
+.sp2r { float: right; text-align: right; }
+.spd2 .v { font-size: 30px; line-height: 34px; margin-top: 1px; white-space: nowrap; }
+.spd2 .u { font-size: 13px; margin-left: 4px; }
+.spd2 .dn { color: #5b97ff; } .spd2 .up { color: #ff9f5a; }
+.spk2 { height: 42px; margin-top: 4px; }
+.card.half.mini2 { height: 78px; padding: 9px 12px; overflow: hidden; }
+.mini2 .v { font-size: 24px; line-height: 27px; white-space: nowrap; }
+.mini2 .u { font-size: 12px; margin-left: 3px; }
+.mini2 .sub { display: block; font-size: 11px; height: 14px; line-height: 14px; white-space: nowrap; overflow: hidden; }
+.card.pwrc.pwr2 { margin-top: 8px; }
+.card.devbar { display: block; height: 44px; box-sizing: border-box; padding: 0 14px; line-height: 42px; font-size: 0; white-space: nowrap; overflow: hidden; }
+.devbar .dl { display: inline-block; width: 120px; font-size: 13px; }
+.devbar .dr { display: inline-block; width: 150px; text-align: right; font-size: 12px; }
+body.dark .devbar .dr, body.dark .mini2 .sub { color: #9aa3b0; }
+body.light .devbar .dr, body.light .mini2 .sub { color: #5d6673; }
+/* 控制中心磁贴改用浮动：行内块排列时行高会让第二、三行之间多出约 10px */
+.tiles { overflow: hidden; }
+.tiles .card.tile { float: left; }

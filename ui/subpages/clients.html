@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}}">
+  {{STATUSBAR}}
+  <div class="subtop"><a href="act:backfunc" id="bk" class="bk"></a><a href="act:backfunc" class="tl">已连接设备</a></div>
+  <div class="card">
+    <div class="k cap">共 {{CLIENTS}} 台</div>
+    {{CLIENTLIST}}
+  </div>
+  <div class="card kvc">
+    <div class="kv"><span class="k">网关</span><span class="v n">{{DHCP_IP}}</span></div>
+    <div class="kv"><span class="k">地址池</span><span class="v">{{DHCP_POOL}}</span></div>
+    <div class="kv"><span class="k">租期</span><span class="v">{{DHCP_LEASE}}</span></div>
+  </div>
+  {{TOAST}}
+  <div class="pgpad"></div>
+</body>
+</html>

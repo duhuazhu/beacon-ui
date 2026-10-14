@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}} one">
+  {{STATUSBAR}}
+  <div class="ptitle"><b>WiFi</b><a href="act:wifi" class="sw ptsw {{WIFICLASS}}"><span class="kn"></span></a><span class="ptst">{{WIFISTATE}}</span></div>
+  <div class="card qrcard">
+    <div id="qr" class="qr"></div>
+    <div class="cred">
+      <div class="k">名称</div><div class="v">{{SSID}}</div>
+      <div class="k">密码</div><div class="v n">{{KEY}}</div>
+      <a href="act:revealkey" class="chipbtn">{{KEYBTN}}</a>
+    </div>
+  </div>
+  <div class="chips c4"><a href="act:wifi24" class="chip {{WIFI24CLASS}}"><b>2.4G</b><span>{{W24S}}</span></a><a href="act:wifi5" class="chip {{WIFI5CLASS}}"><b>5G</b><span>{{W5S}}</span></a><a href="act:sub:wifipower.html" class="chip"><b>功率</b><span>{{TXLBL}}</span></a><a href="act:nfc" class="chip {{NFCCLASS}}"><b>NFC</b><span>{{NFCSTATE}}</span></a></div>
+  <div class="card clc">
+    <div class="k cap">已连接 {{CLIENTS}} 台</div>
+    {{CLIENTLIST}}
+  </div>
+  {{RLENTRY}}
+  {{TOAST}}
+  <div class="pgpad"></div>
+  {{DOTS}}
+</body>
+</html>

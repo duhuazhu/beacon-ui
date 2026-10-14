@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}} one">
+  {{STATUSBAR}}
+  <div class="ptitle"><b>网络</b><span class="pill {{SIGQC}}"><i></i>{{CMODE}} · {{WAN}}{{NETTAG}}</span></div>
+  <div class="duo">
+    <div class="card half sigc"><div class="k">信号强度</div><div class="v {{SIGQC}}"><span class="n">{{RSRPX}}</span><span class="u">dBm</span></div><div class="bar"><i class="{{SIGQC}}" style="width:{{RSRPW}}%"></i></div></div>
+    <div class="card half sigc"><div class="k">信噪比</div><div class="v {{SINRC}}"><span class="n">{{SINRX}}</span><span class="u">dB</span></div><div class="bar"><i class="{{SINRC}}" style="width:{{SINRW}}%"></i></div></div>
+  </div>
+  <div class="duo">
+    <a href="act:sub:nbr.html" class="card half tl2"><span id="chev3" class="chev"></span><span class="et">附近基站</span><span class="k">邻区排行 · 可锁定</span></a>{{RESCUEENT}}
+  </div>
+  <div class="card kvg">
+    <div class="kc"><span class="k">运营商</span><span class="v">{{OPER}} · {{GENSUB}}</span></div><div class="kc"><span class="k">频段 / 带宽</span><span class="v n">{{BANDSUM}}</span></div>
+    <div class="kc"><span class="k">ARFCN / PCI</span><span class="v n">{{ARFCN}} · {{PCI}}</span></div><div class="kc"><span class="k">RSRQ</span><span class="v n">{{RSRQ}} dB</span></div>
+    <div class="kc"><span class="k">QCI / AMBR</span><span class="v n">{{QCI}} · {{AMBR}}</span></div><div class="kc"><span class="k">选网</span><span class="v">{{NETMODE}}</span></div>
+  </div>
+  {{USAGECARD}}
+  <div class="btns four"><a href="act:sub:lock.html" class="btn">锁频</a><a href="act:stpage" class="btn">测速</a><a href="act:sub:cell.html" class="btn">信令</a><a href="act:sub:charts.html" class="btn">监控</a></div>
+  {{NEIGHBORCARDS}}
+  {{TOAST}}
+  <div class="pgpad"></div>
+  {{DOTS}}
+</body>
+</html>

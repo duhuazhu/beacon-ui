@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}}">
+  {{STATUSBAR}}
+  <div class="subtop"><a href="act:backfunc" id="bk" class="bk"></a><a href="act:backfunc" class="tl">省电</a></div>
+  <div class="card">
+    <div class="ct">WiFi 休眠</div>
+    <div class="k">没有设备连接、且屏幕熄灭超过设定时间后，关闭 WiFi 省电。按电源键亮屏即恢复。</div>
+    <div class="aots">{{WSLEEPTILES}}</div>
+  </div>
+  <div class="card">
+    <div class="ct">待机节能</div>
+    <div class="k">没有设备连接、且熄屏 3 分钟后，自动暂停后台服务；有设备连上或亮屏时立即恢复。熄屏时不自动测速，数据刷新放慢。</div>
+  </div>
+  {{TOAST}}
+</body>
+</html>

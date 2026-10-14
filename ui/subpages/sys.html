@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}} one">
+  {{STATUSBAR}}
+  <div class="subtop"><a href="act:backfunc" id="bk" class="bk"></a><a href="act:backfunc" class="tl">关于本机</a></div>
+  <div class="card abc">
+    <div class="abhd"><span class="abmodel">中兴 U60 Pro</span><span class="k abr">{{ABMODEL}}</span></div>
+    <div class="kv"><span class="k">软件版本</span><span class="v n">{{ABVER}}</span></div>
+    <a href="act:revealimei" class="kv"><span class="k">IMEI</span><span class="v n">{{IMEI}}<span id="eye" class="eye"></span></span></a>
+    <div class="kv"><span class="k">已运行</span><span class="v">{{ABUP}}</span></div>
+  </div>
+  <a href="act:revealimei" class="card abc">
+    <div class="k abt">SIM 卡</div>
+    <div class="kv"><span class="k">号码</span><span class="v n">{{SIMNUM}}</span></div>
+    <div class="kv"><span class="k">运营商</span><span class="v">{{SIMOP}}</span></div>
+    <div class="kv"><span class="k">ICCID</span><span class="v n">{{SIMICCID}}</span></div>
+    <div class="kv"><span class="k">IMSI</span><span class="v n">{{SIMIMSI}}</span></div>
+  </a>
+  <div class="card abg">
+    <div class="abgc"><div class="k">CPU</div><span class="n abgv">{{CPUUSAGE}}</span><span class="k">% · {{CPUTEMP}}℃</span></div>
+    <div class="abgc sep"><div class="k">内存</div><span class="n abgv">{{MEM}}</span><span class="k">%</span></div>
+    <div class="abgc sep"><div class="k">电池</div><span class="n abgv">{{BATV}}</span><span class="k">V · {{BATTEMP}}℃</span></div>
+  </div>
+  <a href="act:refreshambr" class="k ablink">刷新 AMBR 缓存 ›</a>
+  {{TOAST}}
+</body>
+</html>

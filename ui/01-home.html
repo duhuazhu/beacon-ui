@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}}">
+  {{STATUSBAR}}
+  {{SIGWARN}}
+  <a href="act:gopage:signal" class="card hero2">
+    <div class="h2a"><span class="n gen">{{GEN}}<span class="gsub">{{GENSUB}}</span></span><span class="pill h2pill {{SIGQC}}"><i></i>{{SIGQ}}</span></div>
+    <div class="h2b"><span class="pl">{{OPERSHORT}} · {{BANDSUM}}</span><span class="pr"><span class="n hv">{{RSRPX}}</span> dBm · SINR <span class="n hv">{{SINRX}}</span></span></div>
+  </a>
+  <div class="card spd2">
+    <div class="sp2r"><div class="k"><span class="up">↑</span> 上行</div><div class="v"><span class="n">{{TXV}}</span><span class="u">{{TXU}}</span></div></div>
+    <div class="sp2l"><div class="k"><span class="dn">↓</span> 下行</div><div class="v"><span class="n">{{RXV}}</span><span class="u">{{RXU}}</span></div></div>
+    <div id="spk-both" class="spk2"></div>
+  </div>
+  {{HOMEROW2}}
+  {{TOAST}}
+  <div class="pgpad"></div>
+  {{DOTS}}
+</body>
+</html>

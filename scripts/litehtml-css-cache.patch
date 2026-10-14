@@ -1,0 +1,59 @@
+diff --git a/src/document.cpp b/src/document.cpp
+index abf3987..98869ee 100644
+--- a/src/document.cpp
++++ b/src/document.cpp
+@@ -81,8 +81,18 @@ document::ptr document::createFromString(
+ 
+ 	if (master_styles != "")
+ 	{
+-		doc->m_master_css.parse_css_stylesheet(master_styles, "", doc);
+-		doc->m_master_css.sort_selectors();
++		/* u60: parsing the master sheet costs tens of ms per document on the
++		 * device; it never changes, so parse once and share the selectors. */
++		static string s_master_key;
++		static css s_master_css;
++		if (s_master_key != master_styles)
++		{
++			s_master_css = css();
++			s_master_css.parse_css_stylesheet(master_styles, "", doc);
++			s_master_css.sort_selectors();
++			s_master_key = master_styles;
++		}
++		doc->m_master_css = s_master_css;
+ 	}
+ 	if (user_styles != "")
+ 	{
+@@ -104,6 +114,24 @@ document::ptr document::createFromString(
+ 		doc->m_root->parse_attributes();
+ 
+ 		// parse style sheets linked in document
++		/* u60: reuse the parsed author sheets while their text is unchanged
++		 * (only when none carries a media attribute: media lists belong to the
++		 * document that parsed them). */
++		static string s_styles_key;
++		static css s_styles_css;
++		string key;
++		bool cacheable = true;
++		for (const auto& c : doc->m_css) {
++			key += c.baseurl; key += '\x1f'; key += c.text;
++			/* media lists / imports register state on the parsing document */
++			if (c.media != "" || c.text.find("@media") != string::npos || c.text.find("@import") != string::npos) cacheable = false;
++		}
++		if (cacheable && !key.empty() && key == s_styles_key)
++		{
++			doc->m_styles = s_styles_css;
++		}
++		else
++		{
+ 		for (const auto& css : doc->m_css)
+ 		{
+ 			media_query_list_list::ptr media;
+@@ -117,6 +145,8 @@ document::ptr document::createFromString(
+ 		}
+ 		// Sort css selectors using CSS rules.
+ 		doc->m_styles.sort_selectors();
++		if (cacheable) { s_styles_css = doc->m_styles; s_styles_key = key; }
++		}
+ 
+ 		// Apply media features.
+ 		doc->update_media_lists(doc->m_media);

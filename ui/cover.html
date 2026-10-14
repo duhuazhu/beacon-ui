@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}} cover cv2">
+  {{STATUSBAR}}
+  <div class="date">{{DATE}}</div>
+  <div class="clock n">{{COVERTIME}}</div>
+  <div class="cvw">
+    <div class="cvwc"><div id="cv-bat" class="cvring"></div><div class="k cvwl">{{CVBATL}}</div></div>
+    <div class="cvwc"><div id="cv-sig" class="cvring"></div><div class="k cvwl">{{CVNETL}}</div></div>
+    <div class="cvwc"><div id="cv-data" class="cvring"></div><div class="k cvwl">本月流量</div></div>
+  </div>
+  <div class="card cvcard">
+    <div class="cvtop">
+      <div class="cvr"><div class="k">↑ 上行</div><span class="n up cvmid">{{TXV}}</span><span class="u">{{TXU}}</span></div>
+      <div class="cvl"><div class="k">↓ 下行</div><span class="n cvbig">{{RXV}}</span><span class="u">{{RXU}}</span></div>
+    </div>
+    <div id="cvspark" class="cvspark"></div>
+  </div>
+  <div class="hint"><span class="hcap"><span id="hup" class="hup"></span>{{COVERHINT}}</span></div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="style.css"></head>
+<body class="{{THEME}} one">
+  {{STATUSBAR}}
+  <div class="ptitle"><b>设置</b></div>
+  <div class="card wpc">
+    {{WPSEL}}
+    {{THEMESEG}}
+  </div>
+  <div class="duo">
+    <a href="act:sub:screen.html" class="card half tl2"><span id="chev" class="chev"></span><span class="et">屏幕</span><span class="k">亮度 {{BRIGHT}}% · {{AUTOOFFSHORT}}</span></a><a href="act:sub:power.html" class="card half tl2"><span id="chev2" class="chev"></span><span class="et">省电</span><span class="k">{{WSLEEPSHORT}}</span></a>
+  </div>
+  <div class="tg">
+    <a href="act:cover" class="card tgc"><span class="sw {{COVERCLASS}}"><span class="kn"></span></span><span class="tl">唤醒封面</span><span class="k">{{COVERSHORT}}</span></a><a href="act:locktoggle" class="card tgc"><span class="sw {{LOCKCLASS}}"><span class="kn"></span></span><span class="tl">锁屏密码</span><span class="k">{{LOCKSTATE}}</span></a>
+    <a href="act:spunit" class="card tgc"><span class="sw {{SPUNITCLASS}}"><span class="kn"></span></span><span class="tl">速率单位</span><span class="k">{{SPUNITSHORT}}</span></a><a href="act:batpct" class="card tgc"><span class="sw {{BATPCTCLASS}}"><span class="kn"></span></span><span class="tl">电量百分比</span><span class="k">{{BATPCTSTATE}}</span></a>
+    <a href="act:usbpower" class="card tgc"><span class="sw {{USBPWRCLASS}}"><span class="kn"></span></span><span class="tl">反向供电</span><span class="k">{{USBPWRSTATE}}</span></a><a href="act:sub:sigadv.html" class="card tgc"><span id="chev6" class="chev"></span><span class="tl">高级设置</span><span class="k">{{SIGADVSHORT}}</span></a>
+  </div>
+  <div class="card rfc"><span class="k rfl">数据刷新</span>{{REFRESHSEG}}</div>
+  <a href="act:sub:sys.html" class="card sysr"><span id="chev5" class="chev"></span><span class="k">本机　</span><span class="n">CPU {{CPUUSAGE}}% · {{CPUTEMP}}℃ · 内存 {{MEM}}% · {{UPSHORT}}</span></a>
+  {{TOAST}}
+  <div class="pgpad"></div>
+  {{DOTS}}
+</body>
+</html>
