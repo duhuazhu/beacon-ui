@@ -12,7 +12,7 @@ Beacon UI 是 ZTE U60 Pro（SDX 系列 5G MiFi）前面板屏幕界面的 clean-
 </p>
 <p align="center"><sub>真机截图，320 × 480；「已连接设备」页给一台设备名打了码，其余未经修饰</sub></p>
 
-> 💬 QQ 交流群 **76078845**　·　🌐 网站与安装说明 [vickydu.cn/u60](https://vickydu.cn/u60/install.html)　·　🐛 问题与建议 [工单页](https://vickydu.cn/u60/issues.html)
+> 💬 QQ 交流群 **76078845**　·　🌐 网站与安装说明 [vickydu.cn/beacon](https://vickydu.cn/beacon/install.html)　·　🐛 问题与建议 [工单页](https://vickydu.cn/beacon/issues.html)
 
 ## 这块屏能做什么
 
@@ -33,7 +33,7 @@ Beacon UI 是 ZTE U60 Pro（SDX 系列 5G MiFi）前面板屏幕界面的 clean-
 | **设置** | 五套主题（深海、暮色、森林、晨雾、纯色）并可跟随壁纸自动切换深浅；亮度与自动息屏；WiFi 休眠与待机节能；唤醒封面、速率单位、电量百分比、反向供电、数据刷新频率 |
 | **安装与更新** | 2333 插件中心一键安装；装好后联网自动更新；不改动原厂界面，连续崩溃 3 次自动交还原厂，不会黑屏 |
 
-> **WiFi 中继**（把附近的 WiFi 当上游、同时继续发自己的热点）是付费的高级版功能，不在本仓库中。基础版屏幕上有入口，可直接扫码开通，详见[网站](https://vickydu.cn/u60/)。
+> **WiFi 中继**（把附近的 WiFi 当上游、同时继续发自己的热点）是付费的高级版功能，不在本仓库中。基础版屏幕上有入口，可直接扫码开通，详见[网站](https://vickydu.cn/beacon/)。
 
 ## 更多截图
 
@@ -61,7 +61,7 @@ Beacon UI 是 ZTE U60 Pro（SDX 系列 5G MiFi）前面板屏幕界面的 clean-
 **推荐：2333 插件中心一键安装，不用电脑**
 
 1. 手机或电脑连上设备 WiFi，浏览器打开 `192.168.0.1:2333` 并登录。
-2. 插件功能 → 插件商店，添加「U60 屏幕界面」。商店里还没有的话，下载[插件文件](https://vickydu.cn/u60/screen-plugin.txt)，用「添加插件 (.txt 文件)」导入。
+2. 插件功能 → 插件商店，添加「U60 屏幕界面」。商店里还没有的话，下载[插件文件](https://vickydu.cn/beacon/screen-plugin.txt)，用「添加插件 (.txt 文件)」导入。
 3. 展开插件卡片，点「一键安装」。看到「安装完成」即可，屏幕几秒后换成新界面。
 
 **备选：电脑 adb 安装**
